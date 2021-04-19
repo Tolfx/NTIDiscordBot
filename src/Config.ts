@@ -1,2 +1,2 @@
 export const ExpressPort = 5625;
-export const name = "test";
+export const Discord_Prefix = "%";
