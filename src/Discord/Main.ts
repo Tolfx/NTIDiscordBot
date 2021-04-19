@@ -31,9 +31,10 @@ export default function StartDiscordBot()
     }),
     commands: Collection<string[], (event: RunEvent) => any> = new Collection();
 
-
+    // Our command handlar sorts and finds commands and maps it so we can execute it later.
     CommandHandler(commands);
 
+    // When our client is ready say it!
     client.once("ready", () => {
         console.log("Bot is ready.");
     });
@@ -47,15 +48,17 @@ export default function StartDiscordBot()
         //If the messages doesnt start with prefix ignore it
         if (!message.content.startsWith(prefix)) return;
 
-          //The args /shrug
+        //The arguments /shrug
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
         //Find what command the user is doing
         const cmd = args.shift().toLowerCase();
 
         if (cmd.length === 0) return;
 
+        // Find the command.
         let command = commands.get(cmd);
 
+        // If we found and command execute it.
         if (command) {
             command({
                 client,
