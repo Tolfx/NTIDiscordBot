@@ -1,6 +1,28 @@
 import { Client, Collection  } from "discord.js";
 import CommandHandler from "./Handler/Commands";
-import RunEvent from "./Interfaces/RunEvent"
+import RunEvent from "../Interfaces/RunEvent"
+import { Discord_Prefix } from "../Config";
+const prefix = Discord_Prefix;
+
+/*
+
+Guide: How to create a new command.
+    Every command goes to "Commands" folder,
+    There you have different categories which can also be created,
+    by creating a new folder with a new name.
+
+    Then when you want to create a new command you create a new file,
+    in a category, then you must export two very important stuff.
+
+    1. You need to export "name" which is an array of strings which will identify
+        the command name when executed.
+    2. You need to export a function called "run" which takes in interface EventRun,
+        which contains arguments that you'll need to subtain the command.
+    
+    Once all you've done this correctly it should work once the bot is started :D
+
+*/
+
 
 export default function StartDiscordBot()
 {
@@ -16,9 +38,8 @@ export default function StartDiscordBot()
         console.log("Bot is ready.");
     });
 
-    const prefix = process.env.DISCORD_PREFIX ?? "";
+    
     client.on("mesasge", (message) => {
-
         //If the bot is sending it self a message
         if (message.author.bot) return;
         //If the message wasn't from the guild (aka dm) return
