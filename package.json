@@ -1,0 +1,17 @@
+{
+  "name": "NTIDiscordBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.ts",
+  "scripts": {
+    "start": "node ./build/Server.js",
+    "build": "npm install && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1"
+  }
+}
