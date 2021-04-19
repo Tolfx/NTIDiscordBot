@@ -3,7 +3,13 @@ import session from "express-session";
 import cors from "cors";
 import expressLayouts from "express-ejs-layouts";
 import methodOverride from "method-override";
-import { ExpressPort as PORT } from "../Config"
+import { ExpressPort as PORT, SecretAuth } from "../Config"
+
+declare module 'express-session' {
+    export interface SessionData {
+      token: { [key: string]: any };
+    }
+}
 
 export default function StartExpressServer()
 {
@@ -15,7 +21,7 @@ export default function StartExpressServer()
     }));
 
     server.use(session({
-        secret: "123132123",
+        secret: SecretAuth,
         resave: false,
         saveUninitialized: false,
         cookie: {
