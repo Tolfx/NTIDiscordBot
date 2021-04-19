@@ -1,4 +1,4 @@
-import RunEvent from "../../Interfaces/RunEvent";
+import RunEvent from "../../../Interfaces/RunEvent";
 
 export const name = ["ping"];
 

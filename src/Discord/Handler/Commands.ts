@@ -1,6 +1,6 @@
 import { Client } from "discord.js";
 import { readdirSync, readFile } from "fs";
-import RunEvent from "../Interfaces/RunEvent";
+import RunEvent from "../../Interfaces/RunEvent";
 
 export default function CommandHandler(commands: any): void
 {
