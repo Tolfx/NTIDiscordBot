@@ -6,6 +6,7 @@ import methodOverride from "method-override";
 import { ExpressPort as PORT, SecretAuth } from "../Config"
 import OAuthRouter from "./Routers/OauthRouter";
 import OAuth2 from "./Structures/Oauth2";
+import log from "../Lib/Logger";
 
 declare module 'express-session' {
     export interface SessionData {
@@ -45,5 +46,5 @@ export default function StartExpressServer()
     // Routes goes here..
     new OAuthRouter(server, Oauth);
 
-    server.listen(PORT, () => console.log(`Server listing on port: ${PORT}`))
+    server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
 };

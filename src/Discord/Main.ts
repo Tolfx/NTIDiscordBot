@@ -1,7 +1,8 @@
 import { Client, Collection  } from "discord.js";
 import CommandHandler from "./Handler/Commands";
 import RunEvent from "../Interfaces/RunEvent"
-import { Discord_Prefix } from "../Config";
+import { Discord_Prefix, Discord_Token } from "../Config";
+import log from "../Lib/Logger";
 const prefix = Discord_Prefix;
 
 /*
@@ -36,7 +37,7 @@ export default function StartDiscordBot()
 
     // When our client is ready say it!
     client.once("ready", () => {
-        console.log("Bot is ready.");
+        log.info(`Bot is ready and online!`);
     });
 
     
@@ -68,5 +69,5 @@ export default function StartDiscordBot()
         };
     });
 
-    client.login(process.env.DISCORD_TOKEN ?? "");
+    client.login(Discord_Token);
 };
