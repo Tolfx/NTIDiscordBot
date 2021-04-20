@@ -1,7 +1,5 @@
 # NTIDiscordBot
 
-# Discord planing
-
 ## Questions
 
 - Is it possible to create timers to monitor students?
