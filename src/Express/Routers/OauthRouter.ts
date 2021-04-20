@@ -1,6 +1,5 @@
 import { Router, Application } from "express";
 import fetch from "node-fetch";
-import session from "express-session"
 import OAuth2 from "../Structures/Oauth2"
 import { callbackURL, clientID, clientSecret, redirectUri } from "../../Config"
 import { URLSearchParams } from "url";
