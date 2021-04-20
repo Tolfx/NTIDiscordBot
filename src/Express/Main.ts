@@ -3,10 +3,11 @@ import session from "express-session";
 import cors from "cors";
 import expressLayouts from "express-ejs-layouts";
 import methodOverride from "method-override";
-import { ExpressPort as PORT, SecretAuth } from "../Config"
+import { ExpressPort as PORT, SecretAuth } from "../Config";
 import OAuthRouter from "./Routers/OauthRouter";
 import OAuth2 from "./Structures/Oauth2";
 import log from "../Lib/Logger";
+import { Client } from "discord.js";
 
 declare module 'express-session' {
     export interface SessionData {
@@ -14,37 +15,48 @@ declare module 'express-session' {
     }
 }
 
-export default function StartExpressServer()
+export default class ExpressServer
 {
-    const server = express();
+    private server = express();
+    private client: Client;
 
-    server.use(cors({
-        origin: true,
-        credentials: true
-    }));
+    constructor(client: Client)
+    {
+        this.client = client;
+        this.server = express();
+    }
 
-    server.use(session({
-        secret: SecretAuth,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            secure: "auto",
-            sameSite: false,
-            httpOnly: false,
-            maxAge: 6048e5
-        }
-    }));
+    public start()
+    {
+        this.server.use(cors({
+            origin: true,
+            credentials: true
+        }));
+    
+        this.server.use(session({
+            secret: SecretAuth,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                secure: "auto",
+                sameSite: false,
+                httpOnly: false,
+                maxAge: 6048e5
+            }
+        }));
+    
+        this.server.use(expressLayouts);
+        this.server.set('view engine', 'ejs');
+        this.server.use(express.static('public'));
+        this.server.use(methodOverride('_method'));
+        this.server.use(express.urlencoded({ extended: true }));
+    
+        const Oauth = new OAuth2();
+    
+        // Routes goes here..
+        new OAuthRouter(this.server, Oauth);
+    
+        this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
+    }
 
-    server.use(expressLayouts);
-    server.set('view engine', 'ejs');
-    server.use(express.static('public'));
-    server.use(methodOverride('_method'));
-    server.use(express.urlencoded({ extended: true }));
-
-    const Oauth = new OAuth2();
-
-    // Routes goes here..
-    new OAuthRouter(server, Oauth);
-
-    server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
 };

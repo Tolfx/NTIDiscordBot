@@ -3,6 +3,7 @@ import CommandHandler from "./Handler/Commands";
 import RunEvent from "../Interfaces/RunEvent"
 import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
+import ExpressServer from "../Express/Main";
 const prefix = Discord_Prefix;
 
 /*
@@ -31,6 +32,11 @@ export default function StartDiscordBot()
         disableMentions: "none"
     }),
     commands: Collection<string[], (event: RunEvent) => any> = new Collection();
+
+    /**
+     * @description Start express server with client.
+     */
+    new ExpressServer(client).start();
 
     // Our command handlar sorts and finds commands and maps it so we can execute it later.
     CommandHandler(commands);
