@@ -75,5 +75,9 @@ export default function StartDiscordBot()
         };
     });
 
+    client.on("voiceStateUpdate", (oldState, newState) => {
+
+    });
+
     client.login(Discord_Token);
 };
