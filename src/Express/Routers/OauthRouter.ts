@@ -3,18 +3,20 @@ import fetch from "node-fetch";
 import OAuth2 from "../Structures/Oauth2"
 import { callbackURL, clientID, clientSecret, redirectUri } from "../../Config"
 import { URLSearchParams } from "url";
+import { Client } from "discord.js";
 
 export default class OAuthRouter {
     protected server: Application;
     protected router: Router;
     protected oauth: OAuth2;
+    protected client: Client;
 
-    public constructor(server: Application, oauth: OAuth2) {
+    public constructor(server: Application, oauth: OAuth2, client: Client) {
         this.server = server;
         this.router = Router();
         this.oauth = oauth;
-
-        this.server.use(this.router);
+        this.client = client;
+        this.server.use("/api", this.router);
 
         this.router.get("/oauth/callback", (req, res) => {
             fetch("https://discord.com/api/oauth2/token", {
