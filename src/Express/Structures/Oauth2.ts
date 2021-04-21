@@ -9,9 +9,10 @@ export default class OAuth2 {
         this.guilds = new Object();
     }
 
-    public async resolveInformation(req: Request): Promise<APIUser | null> {
+    public async resolveInformation(req: Request): Promise<APIUser> {
         if (!req.session.token) {
-            return null
+            //@ts-ignore
+            return null;
         }
 
         const userReq = await fetch("https://discord.com/api/users/@me", {
@@ -22,6 +23,7 @@ export default class OAuth2 {
 
         const user = await userReq.json();
         if(!user.id) {
+            //@ts-ignore
             return null;
         } 
 

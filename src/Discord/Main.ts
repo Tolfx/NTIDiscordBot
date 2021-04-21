@@ -48,6 +48,7 @@ export default function StartDiscordBot()
 
     
     client.on("mesasge", (message) => {
+        
         //If the bot is sending it self a message
         if (message.author.bot) return;
         //If the message wasn't from the guild (aka dm) return

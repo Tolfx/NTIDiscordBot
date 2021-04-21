@@ -52,9 +52,8 @@ export default class ExpressServer
         this.server.use(express.urlencoded({ extended: true }));
     
         const Oauth = new OAuth2();
-    
         // Routes goes here..
-        new OAuthRouter(this.server, Oauth);
+        new OAuthRouter(this.server, Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }

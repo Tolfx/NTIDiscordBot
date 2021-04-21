@@ -1,4 +1,5 @@
-export interface APIUser {
+export interface APIUser 
+{
     id: string;
     username: string;
     discriminator: string;
