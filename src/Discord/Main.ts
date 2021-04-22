@@ -4,6 +4,7 @@ import RunEvent from "../Interfaces/RunEvent"
 import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
+import { Guild } from "discord.js";
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -80,7 +81,7 @@ export default function StartDiscordBot()
         
         // Find the command.
         //@ts-ignore
-        let command: RunEvent= (client.commands.get(cmd)?.run);
+        let command: RunEvent = (client.commands.get(cmd)?.run);
 
         // If we found and command execute it.
         if (command) {
@@ -94,6 +95,14 @@ export default function StartDiscordBot()
 
     client.on("voiceStateUpdate", (oldState, newState) => {
 
+    });
+
+    client.on("guildCreate", (guild: Guild) => {
+        // Only our guild allowed...
+        if(guild.id !== "589051744030294017")
+        {
+            guild.leave();
+        };
     });
 
     client.login(Discord_Token);
