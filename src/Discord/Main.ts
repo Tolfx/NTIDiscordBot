@@ -24,10 +24,11 @@ Guide: How to create a new command.
     Then when you want to create a new command you create a new file,
     in a category, then you must export two very important stuff.
 
-    1. You need to export "name" which is an array of strings which will identify
+    1. You need to export "name" which is a string which will identify
         the command name when executed.
-    2. You need to export a function called "run" which takes in interface EventRun,
+    2. You need to export a function called "run" which takes in type EventRun,
         which contains arguments that you'll need to subtain the command.
+        For example "function run(client: Client, message: Message, args: string[]) {...}
     
     Once all you've done this correctly it should work once the bot is started :D
 
