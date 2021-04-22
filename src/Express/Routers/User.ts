@@ -4,6 +4,7 @@ import { Client } from "discord.js";
 import EnsureAuth from "../Middlewares/EnsureAuthentication";
 import API_Responses from "../Functions/ResJson";
 import UserInformation from "../../Interfaces/Discord/UserInformation";
+import { NTIDiscordID } from "../../Config";
 
 export default class UserRouter {
     protected server: Application;
@@ -11,7 +12,7 @@ export default class UserRouter {
     protected oauth: OAuth2;
     protected client: Client;
 
-    public constructor(server: Application, oauth: OAuth2, client: Client) {
+    constructor(server: Application, oauth: OAuth2, client: Client) {
         this.server = server;
         this.router = Router();
         this.oauth = oauth;
@@ -40,6 +41,48 @@ export default class UserRouter {
             }
 
             return API_Responses.API_Success(result)(res);
+        });
+
+        this.router.post("/post/mute/:userId", async (req, res) => {
+            const User = (await this.oauth.resolveInformation(req));
+            const UserGuild = User.guilds.find(i => i.id === NTIDiscordID);
+            const muteId = req.params.userId;
+
+            if(!UserGuild)
+            {
+
+            }
+
+            if(!UserGuild?.admin)
+            {
+
+            }
+
+            const guild = this.client.guilds.cache.find(e => e.id === NTIDiscordID);
+            const guildMember = guild?.members.cache.find(e => e.id === muteId)
+            guildMember?.voice.setMute(true);
+            
+        });
+
+        this.router.post("/post/unmute/:userId", async (req, res) => {
+            const User = (await this.oauth.resolveInformation(req));
+            const UserGuild = User.guilds.find(i => i.id === NTIDiscordID);
+            const muteId = req.params.userId;
+            
+            if(!UserGuild)
+            {
+
+            }
+
+            if(!UserGuild?.admin)
+            {
+
+            }
+
+            const guild = this.client.guilds.cache.find(e => e.id === NTIDiscordID);
+            const guildMember = guild?.members.cache.find(e => e.id === muteId)
+            guildMember?.voice.setMute(false);
+            
         });
     }
 }

@@ -11,7 +11,8 @@ export default class OAuthRouter {
     protected oauth: OAuth2;
     protected client: Client;
 
-    public constructor(server: Application, oauth: OAuth2, client: Client) {
+    constructor(server: Application, oauth: OAuth2, client: Client) 
+    {
         this.server = server;
         this.router = Router();
         this.oauth = oauth;
@@ -37,7 +38,7 @@ export default class OAuthRouter {
             .then(response => { 
                 req.session.token = response["access_token"];
                 return res.redirect(redirectUri)
-            }).catch(e => null)
+            }).catch(e => res.redirect(redirectUri))
         });
 
         this.router.get("/oauth/login", (req, res) => {

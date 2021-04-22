@@ -5,6 +5,7 @@ import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
 import { Guild } from "discord.js";
+import VoiceHandler from "./Handler/VoiceHandler";
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -38,8 +39,7 @@ Guide: How to create a new command.
 
 export default function StartDiscordBot()
 {
-    const client = new Client({
-    });
+    const client = new Client();
 
     client.commands = new Collection();
     client.category = new Collection();
@@ -81,7 +81,7 @@ export default function StartDiscordBot()
         
         // Find the command.
         //@ts-ignore
-        let command: RunEvent = (client.commands.get(cmd)?.run);
+        let command: RunEvent = (client.commands.get(cmd).run);
 
         // If we found and command execute it.
         if (command) {
@@ -94,7 +94,7 @@ export default function StartDiscordBot()
     });
 
     client.on("voiceStateUpdate", (oldState, newState) => {
-
+        VoiceHandler(oldState, newState);
     });
 
     client.on("guildCreate", (guild: Guild) => {
