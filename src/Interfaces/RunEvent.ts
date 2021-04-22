@@ -1,8 +1,9 @@
 import { Client, Message } from "discord.js";
 
-export default interface RunEvent
-{
-    message: Message,
+type RunEvent = (
     client: Client,
-    args: string[],
-}
+    message: Message,
+    args: string[]
+) => void;
+
+export default RunEvent

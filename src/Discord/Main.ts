@@ -1,10 +1,18 @@
-import { Client, Collection  } from "discord.js";
+import { Client, Collection, Message } from "discord.js";
 import CommandHandler from "./Handler/Commands";
 import RunEvent from "../Interfaces/RunEvent"
 import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
 const prefix = Discord_Prefix;
+
+declare module 'discord.js' 
+{
+    export interface Client {
+      commands: Collection<string, RunEvent>;
+      category: Collection<string, string>;
+    }
+}
 
 /*
 
@@ -29,9 +37,10 @@ Guide: How to create a new command.
 export default function StartDiscordBot()
 {
     const client = new Client({
-        disableMentions: "none"
-    }),
-    commands: Collection<string[], (event: RunEvent) => any> = new Collection();
+    });
+
+    client.commands = new Collection();
+    client.category = new Collection();
 
     /**
      * @description Start express server with client.
@@ -39,16 +48,21 @@ export default function StartDiscordBot()
     new ExpressServer(client).start();
 
     // Our command handlar sorts and finds commands and maps it so we can execute it later.
-    CommandHandler(commands);
+    CommandHandler(client);
 
     // When our client is ready say it!
     client.once("ready", () => {
-        log.info(`Bot is ready and online!`);
+        log.info(`Bot is ready and online!`, log.trace());
+        client.user?.setPresence({
+            status: "dnd",
+            activity: {
+                name: `${prefix}help`,
+                type: "LISTENING",
+            }
+        })
     });
 
-    
-    client.on("mesasge", (message) => {
-        
+    client.on("message", (message: Message) => {
         //If the bot is sending it self a message
         if (message.author.bot) return;
         //If the message wasn't from the guild (aka dm) return
@@ -59,20 +73,21 @@ export default function StartDiscordBot()
         //The arguments /shrug
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
         //Find what command the user is doing
-        const cmd = args.shift().toLowerCase();
+        const cmd: any = args.shift()?.toLowerCase();
 
         if (cmd.length === 0) return;
-
+        
         // Find the command.
-        let command = commands.get(cmd);
+        //@ts-ignore
+        let command: RunEvent= (client.commands.get(cmd)?.run);
 
         // If we found and command execute it.
         if (command) {
-            command({
+            command(
                 client,
                 message,
                 args
-            });
+            );
         };
     });
 
