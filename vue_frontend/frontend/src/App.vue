@@ -1,18 +1,12 @@
 <template>
-  <!-- Sidebar -->
-  <div class="flex h-screen">
-    <sidebar/>
-  </div>
-  <!-- End Sidebar -->
-  
-  <router-view/>
+  <DashboardLayout/>
 </template>
 <script>
-import sidebar from './components/Sidebar'
+import DashboardLayout from './components/DashboardLayout'
 
 export default ({
   components: {
-    sidebar
+    DashboardLayout
   },
   setup() {
     
