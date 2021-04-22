@@ -1,7 +1,12 @@
 <template>
-  <div class="flex bg-gray-900">
-      <div class="text-white text-3xl flex-center">
+  <div class="flex p-5 bg-gray-800">
+      <!-- Name -->
+      <div class="mt-14 text-white text-3xl flex-center">
         <h1>Dashboard</h1>
+      </div>
+      <!-- Navigation -->
+      <div>
+        
       </div>
   </div>
 </template>
