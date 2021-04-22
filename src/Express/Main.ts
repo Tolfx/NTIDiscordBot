@@ -1,7 +1,6 @@
 import express from "express";
 import session from "express-session";
 import cors from "cors";
-import expressLayouts from "express-ejs-layouts";
 import methodOverride from "method-override";
 import { ExpressPort as PORT, SecretAuth } from "../Config";
 import OAuthRouter from "./Routers/OauthRouter";
@@ -19,6 +18,7 @@ export default class ExpressServer
 {
     private server = express();
     private client: Client;
+    private Oauth = new OAuth2();
 
     constructor(client: Client)
     {
@@ -45,15 +45,19 @@ export default class ExpressServer
             }
         }));
     
-        this.server.use(expressLayouts);
-        this.server.set('view engine', 'ejs');
-        this.server.use(express.static('public'));
         this.server.use(methodOverride('_method'));
         this.server.use(express.urlencoded({ extended: true }));
+
+        this.server.use((req, res, next) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.setHeader('X-Powered-By', 'Tolfx Inc');
+
+            next();
+        });
     
-        const Oauth = new OAuth2();
+        
         // Routes goes here..
-        new OAuthRouter(this.server, Oauth, this.client);
+        new OAuthRouter(this.server, this.Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }
