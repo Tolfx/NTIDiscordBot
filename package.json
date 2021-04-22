@@ -27,6 +27,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "@types/common-tags": "^1.8.0",
     "@types/cors": "^2.8.10",
     "@types/date-and-time": "^0.13.0",
     "@types/express": "^4.17.11",
