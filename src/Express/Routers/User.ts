@@ -5,6 +5,7 @@ import EnsureAuth from "../Middlewares/EnsureAuthentication";
 import API_Responses from "../Functions/ResJson";
 import UserInformation from "../../Interfaces/Discord/UserInformation";
 import { NTIDiscordID } from "../../Config";
+import { MuteMember, UnMuteMember } from "../../Lib/DiscordFunc/UserFunctions";
 
 export default class UserRouter {
     protected server: Application;
@@ -50,18 +51,18 @@ export default class UserRouter {
 
             if(!UserGuild)
             {
-
+                API_Responses.API_Error("An unexpected error accured, try again later.")(res);
             }
 
             if(!UserGuild?.admin)
             {
-
+                API_Responses.API_Error("You are not an admin in this guild.")(res);
             }
 
-            const guild = this.client.guilds.cache.find(e => e.id === NTIDiscordID);
-            const guildMember = guild?.members.cache.find(e => e.id === muteId)
-            guildMember?.voice.setMute(true);
-            
+            await MuteMember(this.client, muteId).catch(e => {
+                API_Responses.API_Error(`${e}`)(res);
+            });
+            API_Responses.API_Success(`Succesfully muted user.`)(res);
         });
 
         this.router.post("/post/unmute/:userId", async (req, res) => {
@@ -71,18 +72,18 @@ export default class UserRouter {
             
             if(!UserGuild)
             {
-
+                API_Responses.API_Error("An unexpected error accured, try again later.")(res);
             }
 
             if(!UserGuild?.admin)
             {
-
+                API_Responses.API_Error("You are not an admin in this guild.")(res);
             }
 
-            const guild = this.client.guilds.cache.find(e => e.id === NTIDiscordID);
-            const guildMember = guild?.members.cache.find(e => e.id === muteId)
-            guildMember?.voice.setMute(false);
-            
+            await UnMuteMember(this.client, muteId).catch(e => {
+                API_Responses.API_Error(`${e}`)(res);
+            });
+            API_Responses.API_Success(`Succesfully unmuted user.`)(res);
         });
     }
 }
