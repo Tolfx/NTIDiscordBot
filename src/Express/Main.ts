@@ -19,12 +19,13 @@ export default class ExpressServer
 {
     private server = express();
     private client: Client;
-    private Oauth = new OAuth2();
+    private Oauth: OAuth2;
 
     constructor(client: Client)
     {
         this.client = client;
         this.server = express();
+        this.Oauth = new OAuth2(this.client);
     }
 
     public start()
