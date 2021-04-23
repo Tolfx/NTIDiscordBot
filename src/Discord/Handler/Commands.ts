@@ -12,16 +12,15 @@ export default function CommandHandler(client: any): void
 
     // Dir for commands.
     const commandDir = process.cwd()+"/Build/Discord/Commands"
-
+    client.category = readdirSync(commandDir);
     //
     readdirSync(commandDir).forEach((dir) => {
         const command = readdirSync(`${commandDir}/${dir}`).filter((f) => f.endsWith('.js'));
         
         for (let file of command) {
-            const pull = require(`${commandDir}/${dir}/${file}`) as { name: string, run: RunEvent };
+            const pull = require(`${commandDir}/${dir}/${file}`) as { name: string, cat: string, run: RunEvent };
             if (pull.name) {
                 client.commands.set(pull.name, pull);
-                client.category.set(pull.name, dir);
             }
             continue;
         }

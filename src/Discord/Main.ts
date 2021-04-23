@@ -12,7 +12,7 @@ declare module 'discord.js'
 {
     export interface Client {
       commands: Collection<string, RunEvent>;
-      category: Collection<string, string>;
+      category: string[];
     }
 }
 
@@ -42,7 +42,6 @@ export default function StartDiscordBot()
     const client = new Client();
 
     client.commands = new Collection();
-    client.category = new Collection();
 
     /**
      * @description Start express server with client.
@@ -80,8 +79,7 @@ export default function StartDiscordBot()
         if (cmd.length === 0) return;
         
         // Find the command.
-        //@ts-ignore
-        let command: RunEvent = (client.commands.get(cmd).run);
+        let command = (client.commands.get(cmd))?.run;
 
         // If we found and command execute it.
         if (command) {

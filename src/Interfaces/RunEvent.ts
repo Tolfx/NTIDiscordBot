@@ -6,4 +6,11 @@ type RunEvent = (
     args: string[]
 ) => void;
 
-export default RunEvent
+interface Command
+{
+    name: string;
+    cat: string;
+    run: RunEvent;
+}
+
+export default Command
