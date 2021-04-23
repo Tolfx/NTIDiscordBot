@@ -10,6 +10,8 @@ interface Command
 {
     name: string;
     cat: string;
+    description: string;
+    usage: string;
     run: RunEvent;
 }
 
