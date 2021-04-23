@@ -18,7 +18,13 @@ export default function CommandHandler(client: any): void
         const command = readdirSync(`${commandDir}/${dir}`).filter((f) => f.endsWith('.js'));
         
         for (let file of command) {
-            const pull = require(`${commandDir}/${dir}/${file}`) as { name: string, cat: string, run: RunEvent };
+            const pull = require(`${commandDir}/${dir}/${file}`) as { 
+                name: string, 
+                cat: string, 
+                description: string, 
+                usage: string, 
+                run: RunEvent 
+            };
             if (pull.name) {
                 client.commands.set(pull.name, pull);
             }
