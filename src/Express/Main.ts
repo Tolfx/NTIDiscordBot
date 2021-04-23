@@ -26,10 +26,7 @@ export default class ExpressServer
         this.client = client;
         this.server = express();
         this.Oauth = new OAuth2(this.client);
-    }
 
-    public start()
-    {
         this.server.use(cors({
             origin: true,
             credentials: true
@@ -63,5 +60,4 @@ export default class ExpressServer
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }
-
 };

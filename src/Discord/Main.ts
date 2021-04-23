@@ -46,7 +46,7 @@ export default function StartDiscordBot()
     /**
      * @description Start express server with client.
      */
-    new ExpressServer(client).start();
+    new ExpressServer(client);
 
     // Our command handlar sorts and finds commands and maps it so we can execute it later.
     CommandHandler(client);
