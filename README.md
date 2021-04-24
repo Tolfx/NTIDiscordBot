@@ -5,6 +5,10 @@ This is updated continiously through the development. For the latest notes, scro
 
 ---
 
+## Flowcharts
++ https://github.com/Tolfx/NTIDiscordBot/blob/master/flowchart_narvaro%20(1).svg
++ @tolfx *Diagram here*
+
 
 ## Questions
 
