@@ -86,6 +86,7 @@ https://discord.com/channels/@me/833623467483070526/834769643552899113
 ## WHBD
 + @tolfx implemented config for lessions
 + @tolfx implemented so that a lessions starts
++ Server url: https://discord.gg/ZqXvgD6d
 
 Config for the lession:
 + Start webbutveckling 1 => 70 min
