@@ -1,4 +1,4 @@
-# NTIDiscordBot
+# NTI's Attendence Discord Bot
 
 This is updated continiously through the development. For the latest notes, scroll the entire way down.
 
