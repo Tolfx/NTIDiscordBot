@@ -2,6 +2,7 @@ import { Message, MessageEmbed, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import ms from "ms";
 import { Student } from "../../../Interfaces/Lessons";
+import dateFormat from "date-and-time";
 
 export const name = "start_lesson";
 
@@ -59,16 +60,20 @@ export async function run(client: Client, message: Message, args: string[])
             isStreaming: false,
             hasBeenStreaming: false,
             isOnMobile: e.presence.clientStatus?.mobile ? true : false,
-            presence: e.presence,
+            presence: e.presence.status,
             pre_registered: false,
         }
     });
     const mainChannel = currentVoiceChannel.id;
 
+    // This is a fucking annoying bullshit.
+    // Idk why but god of javascript said so.
+    const date = dateFormat.addHours(new Date, 2);
+
     new Lesson({
         teacherId: message.author.id,
         mainChannel,
-        endsAt: (new Date().setMilliseconds(amountOfTime)),
+        endsAt: (dateFormat.addMilliseconds(date, amountOfTime)),
         ended: false,
         students: student
     }).save();
