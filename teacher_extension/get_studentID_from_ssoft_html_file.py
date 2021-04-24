@@ -1,20 +1,18 @@
+tts = ''
 import re
-
-tts = """
-
-"""
-# Write this generally to get more data out of ssoft
-def length_regexp():
+def regexp_general(pattern, tts_input, duplicates=None):
     tts_list = []
-
-    pattern = re.compile(r'length-\d\d\d\d\d')
-    matches = pattern.finditer(tts)
-    for match in re.finditer(pattern, tts):
+    tts = tts_input
+    p = re.compile(pattern)
+    for match in re.finditer(p, tts):
         s = match.start()
         e = match.end()
         tts_list.append(tts[s:e])
-        tts_list = list(dict.fromkeys(tts_list))
+        if duplicates:
+            tts_list = list(dict.fromkeys(tts_list))
     for l in tts_list:
         print(l)
+    return tts_list
 
-length_regexp()
+
+regexp_general(r'length-\d\d\d\d\d', tts)
