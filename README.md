@@ -52,6 +52,7 @@ This is updated continiously through the development. For the latest notes, scro
 ## Koder närvaro
 + Schoolsofts koder för närvaron
   - 0 = närvarande
+  - 9 = Föranmäld
   - (751 = Deltagit på distans)
   - (205 = Delvis frånvarande)
   - 206 = Sen ankomst
