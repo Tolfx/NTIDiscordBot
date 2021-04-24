@@ -1,5 +1,6 @@
 export const ExpressPort = process.env.EXPRESS_PORT ?? 5623;
 export const Discord_Prefix = "!";
+export const Admin_Role_Id = "";
 export const Discord_Token = process.env.DISCORD_TOKEN ?? "";
 export const callbackURL = "http://localhost:5623/api/oauth/callback",
     clientID = process.env.DISCORD_CLIENT_ID ?? "", 
@@ -7,3 +8,4 @@ export const callbackURL = "http://localhost:5623/api/oauth/callback",
     redirectUri = "https://localhost:5623/"
 export const SecretAuth = process.env.SECRETAUTH ?? ""
 export const NTIDiscordID = "589051744030294017";
+export const MongoDB_URL = process.env.MONGODB_URL ?? "";
