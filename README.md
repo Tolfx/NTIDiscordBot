@@ -98,3 +98,6 @@ Config for the lession:
   - 25 min stream
   - 5 min camera
   - Chat: 1 message
+
+## TDL
++ Add dependencies for later setup
