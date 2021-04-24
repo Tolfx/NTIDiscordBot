@@ -7,7 +7,7 @@ This is updated continiously through the development. For the latest notes, scro
 
 ## Flowcharts
 + https://github.com/Tolfx/NTIDiscordBot/blob/master/flowchart_narvaro%20(1).svg
-+ @tolfx *Diagram here*
++ https://app.diagrams.net/#G1_g1gm0YBLSZB6uz3cCtkHpisn9eu7XHi
 
 
 ## Questions
