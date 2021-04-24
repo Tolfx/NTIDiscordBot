@@ -7,6 +7,7 @@ mongoose.connect(MongoDB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    autoIndex: false
 });
 
 StartDiscordBot();

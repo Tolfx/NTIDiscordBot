@@ -1,5 +1,6 @@
 import { Document} from "mongoose"
 import { Presence } from "discord.js"
+import { PresenceStatus } from "discord.js"
 
 export interface Lesson extends Document
 {
@@ -26,7 +27,7 @@ export interface Student
     isStreaming: boolean;
     hasBeenStreaming: boolean;
     isOnMobile: boolean;
-    presence: Presence;
+    presence: PresenceStatus;
     pre_registered?: boolean;
 }
 
