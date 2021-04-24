@@ -23,6 +23,7 @@ export default class UserRouter {
         this.router.get("/get/user-information", async (req, res) => {
             const ID = (await this.oauth.resolveInformation(req)).id;
             const user = this.client.users.cache.find(r => r.id === ID);
+            
             if(!user)
             {
                 return API_Responses.API_Error("Unable to find user")(res);
