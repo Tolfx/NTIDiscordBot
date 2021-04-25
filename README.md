@@ -9,36 +9,30 @@ This is updated continiously through the development. For the latest notes, scro
 + https://github.com/Tolfx/NTIDiscordBot/blob/master/flowchart_narvaro%20(1).svg
 + https://app.diagrams.net/#G1_g1gm0YBLSZB6uz3cCtkHpisn9eu7XHi
 
+## Koder närvaro
++ Schoolsofts koder för närvaron
+  - 0 = närvarande
+  - 9 = Föranmäld
+  - (751 = Deltagit på distans)
+  - (205 = Delvis frånvarande)
+  - 206 = Sen ankomst
+  - 1 = frånvarande 
 
-## Questions
+## Config file for a specific lession
+Config for the lession:
++ Start webbutveckling 1 => 70 min
+  - First 1 min => setup
+  - 25 min stream
+  - 5 min camera
+  - Chat: 1 message
 
-- Is it possible to create timers to monitor students?
+
+
+---
 
 ## Examples
-
 - !start_lession 1h 20m
-
 - Create an alias for a lession with predefined variables
-
-
-## Problems
-
-- No idea
-
-## Software
-
-- MongoDB
-
-- Typescript
-
-
-## WHBD
-
-- We drew a flowchart of lession logic
-- Research regarding schoolsoft
-- Added temp channel to the flowchart
-- Gone throu discordjs
-- Found out that discordjs supports the project
 
 ## Specifics for the timer
 
@@ -53,14 +47,6 @@ This is updated continiously through the development. For the latest notes, scro
   - Chat (Found)
   - Stream (Found)
 
-## Koder närvaro
-+ Schoolsofts koder för närvaron
-  - 0 = närvarande
-  - 9 = Föranmäld
-  - (751 = Deltagit på distans)
-  - (205 = Delvis frånvarande)
-  - 206 = Sen ankomst
-  - 1 = frånvarande 
 
 ## TDL
 + Skriv om autofillen så du slipper skriva import och save.
@@ -81,7 +67,14 @@ https://discord.com/channels/@me/833623467483070526/834883080166572063
 https://discord.com/channels/@me/833623467483070526/834896386398748752
 https://discord.com/channels/@me/833623467483070526/834769643552899113
 
-## What have been done (WHBD)
+## WHBD
+- We drew a flowchart of lession logic
+- Research regarding schoolsoft
+- Added temp channel to the flowchart
+- Gone throu discordjs
+- Found out that discordjs supports the project
+
+## WHBD
 + Unminified alla js filer i autofill projektet
 + Import of data through CSV
 + Works to debugg on local server
@@ -91,13 +84,6 @@ https://discord.com/channels/@me/833623467483070526/834769643552899113
 + @tolfx implemented config for lessions
 + @tolfx implemented so that a lessions starts
 + Server url: https://discord.gg/ZqXvgD6d
-
-Config for the lession:
-+ Start webbutveckling 1 => 70 min
-  - First 1 min => setup
-  - 25 min stream
-  - 5 min camera
-  - Chat: 1 message
 
 ## TDL
 + Add dependencies for later setup
