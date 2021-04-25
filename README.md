@@ -26,20 +26,13 @@ Config for the lession:
   - 5 min camera
   - Chat: 1 message
 
-
-
----
-
 ## Examples
 - !start_lession 1h 20m
 - Create an alias for a lession with predefined variables
 
 ## Specifics for the timer
-
 - If the student is gone and back under 1 min it does not register
   - Only if repeated more than 4 times
-- If RTC-connection is halted for a longer time (say 15 sec)
-  - then assume that the student is disconnected
 
 + Things we want to check for:
   - Camera (Found)
@@ -48,17 +41,18 @@ Config for the lession:
   - Stream (Found)
 
 
+
 ## TDL
 + Skriv om autofillen så du slipper skriva import och save.
 DiscordD <---> SSoftID --> CSV Data ---> Fill form
 
-0. TDL: Skriv om autofillen så du slipper skriva import och save.
-1. Automatisera så man kan få fram ID på eleverna
+0. Skriv om autofillen så du slipper skriva import och save.
+1. Automatisera så man kan få fram ID på eleverna     
 2. Generera config filer för automatisk import (Görs igenom att klicka på import / export i pluginen)
 3. Sätta upp en server, se till att configen är unik för varje generering. (om det behövs, kan vara bra för de bugg)
 4. Se till att man kan importera den till Autofill (Done)
-## TDL with @tolfx
 
+## TDL with @tolfx
 5. Make continious updates with a dedicated server
 
 ## Images from the chat
