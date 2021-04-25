@@ -2,6 +2,7 @@ require("dotenv").config();
 import StartDiscordBot from "./Discord/Main";
 import { MongoDB_URL } from "./Config";
 import mongoose from "mongoose";
+import log from "./Lib/Logger";
 
 mongoose.connect(MongoDB_URL, {
     useNewUrlParser: true,
@@ -10,9 +11,10 @@ mongoose.connect(MongoDB_URL, {
     autoIndex: false
 });
 
-if(process.env.JENKSIN)
+if(process.env.JENKINS)
 {
     setTimeout(() => {
+        log.info(`Exiting build :)`)
         process.exit(0); // <-- Exit with code 0
     }, 60000) // <--- 1 min
 }
