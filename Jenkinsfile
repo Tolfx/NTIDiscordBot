@@ -14,6 +14,9 @@ pipeline {
                 echo 'Checking nodejs stuff.'
                 sh 'npm --version'
                 sh 'node --version'
+                sh 'npm install'
+                sh 'npm i typescript -g'
+                sh 'tsc'
             }
 
         }
@@ -21,7 +24,8 @@ pipeline {
         stage("Testing code") {
 
             steps {
-                echo 'Code testing'
+                echo 'Starting server.'
+                sh 'node ./Build/Server.js'
             }
 
         }
