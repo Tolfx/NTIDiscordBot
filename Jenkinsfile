@@ -21,7 +21,7 @@ pipeline {
 
         }
 
-        stage("Testing code") {
+        stage("Testing") {
 
             steps {
                 echo 'Starting server.'
