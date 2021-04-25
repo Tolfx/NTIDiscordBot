@@ -6,6 +6,15 @@ pipeline {
         }
     }
 
+    environment {
+        DISCORD_TOKEN=credentials('DISCORD_TOKEN')
+        SECRETAUTH=credentials('SECRETAUTH')
+        DISCORD_CLIENT_ID=credentials('DISCORD_CLIENT_ID')
+        DISCORD_CLIENT_SECRET=credentials('DISCORD_CLIENT_SECRET')
+        MONGODB_URL=credentials('MONGODB_URL')
+        JENKINS=true
+    }
+
     stages {
 
         stage("Build") {
@@ -25,7 +34,7 @@ pipeline {
 
             steps {
                 echo 'Starting server.'
-                sh 'node ./Build/Server.js'
+                sh 'node ./build/Server.js'
             }
 
         }

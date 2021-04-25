@@ -10,4 +10,11 @@ mongoose.connect(MongoDB_URL, {
     autoIndex: false
 });
 
+if(process.env.JENKSIN)
+{
+    setTimeout(() => {
+        process.exit(0); // <-- Exit with code 0
+    }, 60000) // <--- 1 min
+}
+
 StartDiscordBot();
