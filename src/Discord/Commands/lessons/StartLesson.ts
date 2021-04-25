@@ -78,5 +78,5 @@ export async function run(client: Client, message: Message, args: string[])
         students: student
     }).save();
 
-    return;
+    return message.channel.send(`Lesson started.`)
 }
