@@ -7,9 +7,9 @@ pipeline {
         stage("Build") {
 
             steps {
-                nodejs(nodeJSInstallationName: 'Node 14.x') {
-                    sh 'npm install'
-                }
+                echo 'Checking nodejs stuff.'
+                sh 'npm --version'
+                sh 'node --version'
             }
 
         }
