@@ -40,5 +40,5 @@ export async function run(client: Client, message: Message, args: string[])
         return message.channel.send(`Lesson is over`);
     }).catch(e => {
         return message.channel.send(`Something went wrong while trying to end the lesson, try again later.`);
-    })
+    });
 }
