@@ -49,7 +49,7 @@ export async function run(client: Client, message: Message, args: string[])
     const students = currentVoiceChannel.members.filter((member) => member.id !== message.author.id);
     const student: Array<Student> = students.map(e => {
         return {
-            memberId: message.id,
+            memberId: e.id,
             //schoolSoftId?: ;
             voiceChannelId: currentVoiceChannel.id,
             absense: [],
