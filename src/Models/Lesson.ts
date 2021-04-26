@@ -15,6 +15,11 @@ const LessonSchema = new Schema
             required: true,
         },
 
+        subChannels: {
+            type: Array,
+            default: []
+        },
+
         issuedAt: {
             type: Date,
             defualt: Date.now,

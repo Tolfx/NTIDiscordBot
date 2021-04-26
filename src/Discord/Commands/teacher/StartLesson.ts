@@ -60,11 +60,14 @@ export async function run(client: Client, message: Message, args: string[])
             hasSentMessage: false,
             cameraOn: false,
             hasCameraBeenOn: false,
+            camereTime: 0,
             isStreaming: false,
             hasBeenStreaming: false,
+            streamingTime: 0,
             isOnMobile: e.presence.clientStatus?.mobile ? true : false,
             presence: e.presence.status,
             pre_registered: false,
+
         }
     });
     const mainChannel = currentVoiceChannel.id;
