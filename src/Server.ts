@@ -16,7 +16,7 @@ if(process.env.JENKINS || process.env.GITHUB_ACTION)
     setTimeout(() => {
         log.info(`Exiting build :)`)
         process.exit(0); // <-- Exit with code 0
-    }, 60000) // <--- 1 min
+    }, 30000) // <--- 30 sec
 }
 
 StartDiscordBot();
