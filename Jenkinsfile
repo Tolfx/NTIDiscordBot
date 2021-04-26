@@ -39,5 +39,14 @@ pipeline {
 
         }
 
+        stage("Deploy") {
+
+            steps {
+                echo 'Find a solution here please..'
+                echo 'Currently trying to solve for plesk.'
+            }
+
+        }
+
     }
 }
