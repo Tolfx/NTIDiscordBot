@@ -3,6 +3,7 @@ import Lesson from "../../../Models/Lesson";
 import ms from "ms";
 import { Student } from "../../../Interfaces/Lessons";
 import dateFormat from "date-and-time";
+import EventListener from "../../../Lib/EventListener";
 
 export const name = "start_lesson";
 
@@ -78,7 +79,7 @@ export async function run(client: Client, message: Message, args: string[])
         endsAt: lessonEnds,
         ended: false,
         students: student
-    }).save();
-
+    }).save().then(e => EventListener.emit("newLesson", e));
+    
     return message.channel.send(`Lesson started and ends at: \`${dateFormat.format(lessonEnds, "HH:mm:ss")}\`.`);
 }
