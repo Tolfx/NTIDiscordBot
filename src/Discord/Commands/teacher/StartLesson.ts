@@ -6,7 +6,7 @@ import dateFormat from "date-and-time";
 
 export const name = "start_lesson";
 
-export const cat = "lessons";
+export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
@@ -28,7 +28,9 @@ export async function run(client: Client, message: Message, args: string[])
         return message.channel.send(`Specify how long this lesson should be.`);
     }
 
-    const amountOfTime = ms(args.join(" "));
+    const amountOfTime: number = args.map(e => {
+        return ms(e)
+    }).reduce((a, c) => a+c);
 
     const hasAnLessonActive = await Lesson.findOne({
         teacherId: message.author.id,
@@ -68,15 +70,15 @@ export async function run(client: Client, message: Message, args: string[])
 
     // This is a fucking annoying bullshit.
     // Idk why but god of javascript said so.
-    const date = dateFormat.addHours(new Date, 2);
-
+    const date = new Date();
+    const lessonEnds = (dateFormat.addMilliseconds(date, amountOfTime));
     new Lesson({
         teacherId: message.author.id,
         mainChannel,
-        endsAt: (dateFormat.addMilliseconds(date, amountOfTime)),
+        endsAt: lessonEnds,
         ended: false,
         students: student
     }).save();
 
-    return message.channel.send(`Lesson started.`)
+    return message.channel.send(`Lesson started and ends at: \`${dateFormat.format(lessonEnds, "HH:mm:ss")}\`.`);
 }
