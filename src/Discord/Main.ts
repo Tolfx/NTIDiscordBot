@@ -6,6 +6,7 @@ import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
 import { Guild } from "discord.js";
 import VoiceHandler from "./Handler/VoiceHandler";
+import reCache from "./Handler/Caching";
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -102,6 +103,8 @@ export default function StartDiscordBot()
             guild.leave();
         };
     });
+
+    reCache();
 
     client.login(Discord_Token);
 };
