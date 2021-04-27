@@ -1,5 +1,4 @@
 import { Document} from "mongoose"
-import { Presence } from "discord.js"
 import { PresenceStatus } from "discord.js"
 
 export interface Lesson extends Document
@@ -25,10 +24,10 @@ export interface Student
     hasSentMessage: boolean;
     cameraOn: boolean;
     hasCameraBeenOn: boolean;
-    camereTime: number;
+    camereTime: Array<CameraTime>;
     isStreaming: boolean;
     hasBeenStreaming: boolean;
-    streamingTime: number;
+    streamingTime: Array<StreamingTime>;
     isOnMobile: boolean;
     presence: PresenceStatus;
     pre_registered?: boolean;
@@ -39,6 +38,19 @@ export interface Absense
     leftAt: Date;
     cameBackAt?: Date;
 }
+
+export interface StreamingTime
+{
+    startedAt: Date;
+    endedAt?: Date;
+}
+
+export interface CameraTime
+{
+    startedAt: Date;
+    endedAt?: Date;
+}
+
 
 export interface Message
 {
