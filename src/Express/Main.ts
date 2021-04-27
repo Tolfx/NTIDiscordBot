@@ -16,6 +16,12 @@ declare module 'express-session' {
     }
 }
 
+declare module 'express' {
+    export interface Request {
+      discord_token?: object;
+    }
+}
+
 export default class ExpressServer
 {
     private server = express();
@@ -33,7 +39,7 @@ export default class ExpressServer
             credentials: true
         }));
     
-        this.server.use(session({
+        /*this.server.use(session({
             secret: SecretAuth,
             resave: false,
             saveUninitialized: false,
@@ -43,7 +49,7 @@ export default class ExpressServer
                 httpOnly: false,
                 maxAge: 6048e5
             }
-        }));
+        }));*/
     
         this.server.use(methodOverride('_method'));
         this.server.use(express.urlencoded({ extended: true }));
