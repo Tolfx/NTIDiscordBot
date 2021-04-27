@@ -4,6 +4,9 @@ This is updated continiously through the development. For the latest notes, scro
 
 
 ---
+## Dependencies
++ https://www.npmjs.com/package/convert-csv-to-json
+
 
 ## Flowcharts
 + https://github.com/Tolfx/NTIDiscordBot/blob/master/flowchart_narvaro%20(1).svg
