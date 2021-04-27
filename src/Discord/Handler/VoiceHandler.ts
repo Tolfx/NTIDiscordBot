@@ -105,7 +105,7 @@ export default function VoiceHandler(
         }
 
         // Check if stream is on
-        if(newState.selfVideo)
+        if(newState.streaming)
         {
             lesson.students[student].hasBeenStreaming = true;
             lesson.students[student].isStreaming = true;
@@ -117,7 +117,7 @@ export default function VoiceHandler(
         }
 
         // Check if stream is off
-        if(!newState.selfVideo)
+        if(!newState.streaming)
         {
             lesson.students[student].isStreaming = true;
             //@ts-ignore
