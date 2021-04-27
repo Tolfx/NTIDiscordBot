@@ -62,8 +62,8 @@ export default class ExpressServer
         });
     
         // Routes goes here..
+        //new OAuthRouter(this.server, this.Oauth, this.client);
         new UserRouter(this.server, this.Oauth, this.client);
-        new OAuthRouter(this.server, this.Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }

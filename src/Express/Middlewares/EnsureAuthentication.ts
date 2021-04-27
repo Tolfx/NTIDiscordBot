@@ -7,8 +7,8 @@ import { JWT_Access_Token } from "../../Config";
 export default function EnsureAuth()
 {
     return (req: Request, res: Response, next: NextFunction) => {
-        const authHeader = req.headers['authorization']
-        const token = authHeader && authHeader.split(' ')[1]
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
         if (token == null) return API_Responses.API_Error(`Missing token in headers.`, 401)(res);
     
         jwt.verify(token, JWT_Access_Token, (err, token) => {

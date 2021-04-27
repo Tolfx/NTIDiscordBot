@@ -39,10 +39,7 @@ export default class OAuthRouter {
             }).then(response => response.json())
             .then(response => { 
                 const access_token = response["access_token"];
-                const jwt_token = jwt.sign(access_token, JWT_Access_Token, { expiresIn: '1h' })
-                API_Responses.API_Success({
-                    accessToken: jwt_token
-                })(res)
+                const jwt_token = jwt.sign(access_token, JWT_Access_Token, { expiresIn: '1h' });
             }).catch(e => {
                 API_Responses.API_Error("Something went wrong.")(res)
             })
