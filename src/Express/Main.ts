@@ -8,6 +8,7 @@ import OAuth2 from "./Structures/Oauth2";
 import log from "../Lib/Logger";
 import { Client } from "discord.js";
 import UserRouter from "./Routers/User";
+import API_Responses from "./Functions/ResJson";
 
 declare module 'express-session' {
     export interface SessionData {
@@ -57,6 +58,14 @@ export default class ExpressServer
         // Routes goes here..
         new OAuthRouter(this.server, this.Oauth, this.client);
         new UserRouter(this.server, this.Oauth, this.client);
+
+        this.server.get("*", (req, res) => {
+            API_Responses.API_Error(`Unable to find what you were looking for.`)
+        });
+
+        this.server.post("*", (req, res) => {
+            API_Responses.API_Error(`Unable to find what you were looking for.`)
+        });
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }
