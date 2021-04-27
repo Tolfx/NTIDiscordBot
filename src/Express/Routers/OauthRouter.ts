@@ -43,7 +43,9 @@ export default class OAuthRouter {
                 API_Responses.API_Success({
                     accessToken: jwt_token
                 })(res)
-            }).catch(e => res.redirect("/"))
+            }).catch(e => {
+                API_Responses.API_Error("Something went wrong.")(res)
+            })
         });
 
         this.router.get("/oauth/login", (req, res) => {
