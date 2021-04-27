@@ -42,7 +42,7 @@ export default class OAuthRouter {
                 const jwt_token = jwt.sign(access_token, JWT_Access_Token, { expiresIn: '1h' })
                 API_Responses.API_Success({
                     accessToken: jwt_token
-                })
+                })(res)
             }).catch(e => res.redirect("/"))
         });
 
