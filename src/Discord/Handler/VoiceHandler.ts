@@ -82,10 +82,49 @@ export default function VoiceHandler(
             lesson.save();
         }
 
-        // Check if turned on camera
+        // Check if camera turned on
         if(newState.selfVideo)
         {
-
+            lesson.students[student].hasCameraBeenOn = true;
+            lesson.students[student].cameraOn = true;
+            lesson.students[student].camereTime.push({
+                startedAt: new Date(),
+            });
+            lesson.markModified('students');
+            lesson.save();
         }
+
+        // Check if camera turned off
+        if(!newState.selfVideo)
+        {
+            lesson.students[student].cameraOn = false;
+            //@ts-ignore
+            lesson.students[student].camereTime.find(e => !e.endedAt)?.endedAt = new Date();
+            lesson.markModified('students');
+            lesson.save();
+        }
+
+        // Check if stream is on
+        if(newState.selfVideo)
+        {
+            lesson.students[student].hasBeenStreaming = true;
+            lesson.students[student].isStreaming = true;
+            lesson.students[student].streamingTime.push({
+                startedAt: new Date(),
+            });
+            lesson.markModified('students');
+            lesson.save();
+        }
+
+        // Check if stream is off
+        if(!newState.selfVideo)
+        {
+            lesson.students[student].isStreaming = true;
+            //@ts-ignore
+            lesson.students[student].streamingTime.find(e => !e.endedAt)?.endedAt = new Date();
+            lesson.markModified('students');
+            lesson.save();
+        }
+        return;
     }
 }
