@@ -17,7 +17,7 @@ export default class OAuthRouter {
         this.router = Router();
         this.oauth = oauth;
         this.client = client;
-        this.server.use("/api", this.router);
+        this.server.use(this.router);
 
         this.router.get("/oauth/callback", (req, res) => {
             fetch("https://discord.com/api/oauth2/token", {
