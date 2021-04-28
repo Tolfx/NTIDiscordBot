@@ -32,6 +32,7 @@ Config for the lession:
   - Chat: 1 message
 
 ## Examples
+- !rast - låter eleven gå iväg om man inte har genomgång (i max 10 min, går att dela up i !rast 5m !rast 5m)
 - !start_lession 1h 20m
 - Create an alias for a lession with predefined variables
 
