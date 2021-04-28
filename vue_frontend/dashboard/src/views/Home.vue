@@ -2,7 +2,7 @@
   <div class="bg-gray-600 h-screen flex items-center justify-center">
     <div>
       <h1>{{loggedin}}</h1>
-      <button class="bg-discord hover:bg-gray-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+      <button @click="signInWithDiscord()" class="bg-discord hover:bg-gray-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
         <img class="h-10" src = "../assets/logos/Discord-Logo-White.svg" alt="Logo"/>
         <span>Sign in with Discord</span>
       </button>
@@ -17,7 +17,13 @@ export default {
   name: 'Home',
   setup () {
     const store = useStore()
+
+    const signInWithDiscord = () => {
+      console.log('Initiating discord sign in')
+    }
+
     return {
+      signInWithDiscord,
       loggedin: computed(() => store.getters.isLoggedIn)
     }
   }

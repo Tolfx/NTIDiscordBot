@@ -4,20 +4,19 @@
 
 <script>
 import { useRouter } from "vue-router"
-
+import { useStore } from 'vuex'
 export default {
   setup() {
     //Auth Guard
     const router = useRouter();
+    const store = useStore();
 
-    //Grab auth state here
-    const auth = null
 
     router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
-        if (!auth) {
+        if (!store.getters.isLoggedIn) {
           next({
             path: '/secure',
             query: { redirect: to.fullPath }
