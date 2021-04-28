@@ -7,18 +7,20 @@ import { useRouter } from "vue-router"
 
 export default {
   setup() {
+    //Auth Guard
     const router = useRouter();
 
-    //Auth Guard
+    //Grab auth state here
     const auth = null
+
     router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
         if (!auth) {
           next({
-            path: '/',
-            //query: { redirect: to.fullPath }
+            path: '/secure',
+            query: { redirect: to.fullPath }
           })
         } else {
           next()

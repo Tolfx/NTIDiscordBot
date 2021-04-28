@@ -16,6 +16,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/secure',
+    name: 'Secure',
+    component: () => import('../views/Secure.vue'),
+    meta: { requiresAuth: false }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('../views/404.vue'),
