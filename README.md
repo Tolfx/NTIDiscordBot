@@ -6,6 +6,8 @@ This is updated continiously through the development. For the latest notes, scro
 ---
 ## Dependencies
 + https://www.npmjs.com/package/convert-csv-to-json
++ https://www.npmjs.com/package/csvjson-json2csv
+
 
 
 ## Flowcharts
@@ -30,6 +32,7 @@ Config for the lession:
   - Chat: 1 message
 
 ## Examples
+- !rast - låter eleven gå iväg om man inte har genomgång (i max 10 min, går att dela up i !rast 5m !rast 5m)
 - !start_lession 1h 20m
 - Create an alias for a lession with predefined variables
 
