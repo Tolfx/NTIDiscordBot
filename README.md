@@ -6,6 +6,8 @@ This is updated continiously through the development. For the latest notes, scro
 ---
 ## Dependencies
 + https://www.npmjs.com/package/convert-csv-to-json
++ https://www.npmjs.com/package/csvjson-json2csv
+
 
 
 ## Flowcharts
