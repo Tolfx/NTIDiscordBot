@@ -87,3 +87,11 @@ https://discord.com/channels/@me/833623467483070526/834769643552899113
 
 ## TDL
 + Add dependencies for later setup
+
+## How to start bot/server
+
+1. Install TypeScript by running `npm i typescript -g` 
+2. Run `npm run-script build` which will build and install node_modules
+3. Run app by using `npm run-script start`
+4. Check if an `.env` file created and insert the right variables.
+5. Start again and success.
