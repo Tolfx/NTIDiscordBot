@@ -19,9 +19,7 @@ body.no-scroll {
 */
 
 
-a {
-    cursor: pointer;
-}
+
 button, .tab-fields td>*, .content-actionbar input, .content-actionbar select, .tab-other>p>input {
     min-height: 21px;
     box-sizing: border-box;
@@ -51,8 +49,8 @@ h1 {
     margin-top: 0;
     /*padding-left: 40px;*/
 }
-h1, h3 {
-    font-family: Arial;
+h1,h2, h3 {
+    font-family: helvetica;
 }
 
 hr {

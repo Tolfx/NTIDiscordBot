@@ -352,6 +352,7 @@ function handleStartup() {
                                 }
                             }
                         }
+                        /* This could be  */
                         o.autoimport === undefined && (o.autoimport = 0);
                         storageSet({
                             autoimport: g || "",

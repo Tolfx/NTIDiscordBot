@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title data-i18n="generalOptions"></title>
+
 <link rel="shortcut icon" href="images/icon16.png">
 <link rel="stylesheet" href="./css/options_nti_version.css">
 <link rel="stylesheet" href="./css/nti.css">
@@ -11,6 +12,19 @@
 <script src="js/options.js"></script>
 </head>
 <body id="fields">
+        <!-- One click copy -->
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <input class="focus:outline-black" type="text" value="URL here." id="copyInput">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="copyFunc()">Copy text</button>
+        <script>
+        function copyFunc() {
+          var copyText = document.getElementById("copyInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+        }
+        </script>
+  
 
   <div class="container"> 
     <div><button class="item" title="Import CSV data from a remote file"><a href="./options.html">Back</a></button></div>
