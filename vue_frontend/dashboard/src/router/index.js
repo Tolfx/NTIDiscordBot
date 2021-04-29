@@ -22,6 +22,12 @@ const routes = [
     meta: { requiresAuth: false }
   },
   {
+    path: '/oauth2',
+    name: 'oAuth2',
+    component: () => import('../views/oAuth2.vue'),
+    meta: { requiresAuth: false }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('../views/404.vue'),
