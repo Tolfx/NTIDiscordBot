@@ -15,7 +15,8 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-
+      
+      discord: '#7289d9',
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,

@@ -13,14 +13,14 @@ export default class OAuth2 {
     }
 
     public async resolveInformation(req: Request): Promise<APIUser> {
-        if (!req.session.token) {
+        if (!req?.discord_token) {
             //@ts-ignore
             return null;
         }
 
         const userReq = await fetch("https://discord.com/api/users/@me", {
             headers: {
-                "Authorization": `Bearer ${req.session.token}`
+                "Authorization": `Bearer ${req?.discord_token}`
             }
         })
 
@@ -33,7 +33,7 @@ export default class OAuth2 {
         if(!this.guilds[user.id]) {
             const guildReq = await fetch("https://discord.com/api/users/@me/guilds", {
                 headers: {
-                    "Authorization": `Bearer ${req.session.token}`
+                    "Authorization": `Bearer ${req?.discord_token}}`
                 }
             })
 

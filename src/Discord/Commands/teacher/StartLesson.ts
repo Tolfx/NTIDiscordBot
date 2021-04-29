@@ -3,10 +3,11 @@ import Lesson from "../../../Models/Lesson";
 import ms from "ms";
 import { Student } from "../../../Interfaces/Lessons";
 import dateFormat from "date-and-time";
+import EventListener from "../../../Lib/EventListener";
 
 export const name = "start_lesson";
 
-export const cat = "lessons";
+export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
@@ -28,7 +29,9 @@ export async function run(client: Client, message: Message, args: string[])
         return message.channel.send(`Specify how long this lesson should be.`);
     }
 
-    const amountOfTime = ms(args.join(" "));
+    const amountOfTime: number = args.map(e => {
+        return ms(e)
+    }).reduce((a, c) => a+c);
 
     const hasAnLessonActive = await Lesson.findOne({
         teacherId: message.author.id,
@@ -47,7 +50,7 @@ export async function run(client: Client, message: Message, args: string[])
     const students = currentVoiceChannel.members.filter((member) => member.id !== message.author.id);
     const student: Array<Student> = students.map(e => {
         return {
-            memberId: message.id,
+            memberId: e.id,
             //schoolSoftId?: ;
             voiceChannelId: currentVoiceChannel.id,
             absense: [],
@@ -57,26 +60,29 @@ export async function run(client: Client, message: Message, args: string[])
             hasSentMessage: false,
             cameraOn: false,
             hasCameraBeenOn: false,
+            camereTime: [],
             isStreaming: false,
             hasBeenStreaming: false,
+            streamingTime: [],
             isOnMobile: e.presence.clientStatus?.mobile ? true : false,
             presence: e.presence.status,
             pre_registered: false,
+
         }
     });
     const mainChannel = currentVoiceChannel.id;
 
     // This is a fucking annoying bullshit.
     // Idk why but god of javascript said so.
-    const date = dateFormat.addHours(new Date, 2);
-
+    const date = new Date();
+    const lessonEnds = (dateFormat.addMilliseconds(date, amountOfTime));
     new Lesson({
         teacherId: message.author.id,
         mainChannel,
-        endsAt: (dateFormat.addMilliseconds(date, amountOfTime)),
+        endsAt: lessonEnds,
         ended: false,
         students: student
-    }).save();
-
-    return;
+    }).save().then(e => EventListener.emit("newLesson", e));
+    
+    return message.channel.send(`Lesson started and ends at: \`${dateFormat.format(lessonEnds, "HH:mm:ss")}\`.`);
 }
