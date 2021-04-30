@@ -39,7 +39,10 @@ export default class OAuth2 {
 
             const guildsRes = await guildReq.json();
 
-            this.guilds[user.id] = guildsRes;
+            if(guildsRes.code !== 0)
+            {
+                this.guilds[user.id] = guildsRes;
+            }
 
             setTimeout(() => {
                 delete this.guilds[user.id];
@@ -50,7 +53,7 @@ export default class OAuth2 {
             id: user.id,
             username: user.username,
             discriminator: user.discriminator,
-            guilds: this.guilds[user.id].map((guild: any) => {
+            guilds: this.guilds[user.id]?.map((guild: any) => {
                 const g = this.client.guilds.cache.get(guild.id);
                 return {
                     id: guild.id,

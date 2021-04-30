@@ -20,11 +20,10 @@ export default class UserRouter {
         this.client = client;
         this.server.use("/user", EnsureAuth, this.router);
 
-        this.router.get("/get/user-information", async (req, res) => {
+        this.router.get("/get/information", async (req, res) => {
             try {
                 const ID = (await this.oauth.resolveInformation(req)).id;
                 const user = this.client.users.cache.find(r => r.id === ID);
-                
                 if(!user)
                 {
                     return API_Responses.API_Error("Unable to find user")(res);
