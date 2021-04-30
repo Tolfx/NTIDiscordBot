@@ -83,6 +83,8 @@ https://discord.com/channels/@me/833623467483070526/834769643552899113
 ## WHBD
 + @tolfx implemented config for lessions
 + @tolfx implemented so that a lessions starts
++ @Tolfx added oauth2 on vue frontend
++ @Tolfx fixed jwt auth on API
 + Server url: https://discord.gg/ZqXvgD6d
 
 ## TDL
