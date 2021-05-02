@@ -8,6 +8,7 @@ import log from "../Lib/Logger";
 import { Client } from "discord.js";
 import UserRouter from "./Routers/User";
 import API_Responses from "./Functions/ResJson";
+import ValidationRouter from "./Routers/Validation";
 
 declare module 'express-session' {
     export interface SessionData {
@@ -62,6 +63,7 @@ export default class ExpressServer
     
         // Routes goes here..
         new UserRouter(this.server, this.Oauth, this.client);
+        new ValidationRouter(this.server, this.Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }

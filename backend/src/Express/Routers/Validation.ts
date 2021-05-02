@@ -5,7 +5,7 @@ import API_Responses from "../Functions/ResJson";
 import jwt from "jsonwebtoken";
 import { JWT_Access_Token } from "../../Config";
 
-export default class UserRouter {
+export default class ValidationRouter {
     protected server: Application;
     protected router: Router;
     protected oauth: OAuth2;
