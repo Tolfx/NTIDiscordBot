@@ -32,7 +32,7 @@ export default {
                 "client_id": "835552682030792725",
                 // Add discord client secret
                 //@ArvidAnderson
-                "client_secret": process.env.DISCORD_CLIENT_SECRET,
+                "client_secret": process.env.VUE_APP_DISCORD_CLIENT_SECRET,
                 "grant_type": "authorization_code",
                 "code": getParameterByName("code"),
                 "redirect_uri": "http://localhost:8080/oauth2",
@@ -43,10 +43,11 @@ export default {
             const access_token = response["access_token"];
             // Arvid fixa expiresIn grejer alltså...
             // Får huvudvärk
-            const jwt_token = jwt.sign(
-                access_token, 
-                //@ArvidAnderson Fix this!
-                process.env.JWT_SECRET_TOKREN, 
+            const jwt_token = jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                    data: access_token,
+                },
+                process.env.VUE_APP_ACCESS_TOKEN_SECRET, 
             );
             localStorage.setItem('token', jwt_token);
             console.log("Signed in");
