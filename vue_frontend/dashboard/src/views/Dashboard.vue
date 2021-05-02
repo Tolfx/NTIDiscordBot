@@ -5,8 +5,10 @@
   </div>
 </template>
 <script>
+
 export default {
   setup() {
+
     const Logout = () => {
       localStorage.removeItem('token')
     }
