@@ -97,3 +97,12 @@ https://discord.com/channels/@me/833623467483070526/834769643552899113
 3. Run app by using `npm run-script start`
 4. Check if an `.env` file created and insert the right variables.
 5. Start again and success.
+
+## Longterm TDL
+ + Clean up dependencies
+ + Clean up readme
+ + Clean up folders (teacher_frontend)
+ + Add automation to regexp script for schoolsoft (kind of important)
+ + Remove bloat for the teacher extension eg. 'length', 'status'
+ + Add all flowcharts to one flowchart and connect them (if possible, no need to remove the originals)
+ 
