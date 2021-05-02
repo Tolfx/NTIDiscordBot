@@ -11,6 +11,8 @@ export default interface ConfigLesson extends Document
     min_streaming: number;
     min_messages: number;
     min_mobile_time: number;
+    hall: string;
+    logChannel: string;
 }
 
 interface Presence 
