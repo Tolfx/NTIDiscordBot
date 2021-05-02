@@ -10,7 +10,7 @@ IF NOT EXIST "./vue_frontend" (
 EXIT 1
 
 :START_BACKEND
-timeout /t 30 /nobreak
+timeout /t 10 /nobreak
 rem Launch script
 cd vue_frontend/dashboard
 npm run-script serve

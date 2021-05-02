@@ -13,6 +13,7 @@ export default class OAuth2 {
     }
 
     public async resolveInformation(req: Request): Promise<APIUser> {
+        
         if (!req?.discord_token) {
             //@ts-ignore
             return null;
@@ -25,6 +26,7 @@ export default class OAuth2 {
         })
 
         const user = await userReq.json();
+
         if(!user.id) {
             //@ts-ignore
             return null;
