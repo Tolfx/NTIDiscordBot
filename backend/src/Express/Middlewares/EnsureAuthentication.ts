@@ -25,6 +25,6 @@ export default function EnsureAuth(oauth: OAuth2)
             }
             else 
                 return next();
-        })
+        });
     }
 }
