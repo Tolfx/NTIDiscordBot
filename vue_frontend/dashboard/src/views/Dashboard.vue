@@ -4,3 +4,6 @@
     <button class="text-white bg-theme">Logout</button>
   </div>
 </template>
+<script>
+
+</script>
