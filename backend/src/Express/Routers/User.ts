@@ -45,6 +45,7 @@ export default class UserRouter {
                 return API_Responses.API_Success(result)(res);
             } catch(e)
             {
+                console.log(e);
                 return API_Responses.API_Error("Something went wrong.")(res);
             }
         });
