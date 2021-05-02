@@ -34,6 +34,14 @@ const LessonSchema = new Schema
             type: Boolean,
         },
 
+        break: {
+            type: Boolean,
+        },
+
+        breaks: {
+            type: Array,
+        },
+
         students: {
             type: Array,
             required: true,
