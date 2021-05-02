@@ -21,6 +21,7 @@ pipeline {
 
             steps {
                 echo 'Checking nodejs stuff.'
+                sh 'cd ./backend'
                 sh 'npm --version'
                 sh 'node --version'
                 sh 'npm install'
@@ -34,6 +35,7 @@ pipeline {
 
             steps {
                 echo 'Starting server.'
+                sh 'cd ./backend'
                 sh 'node ./build/Server.js'
             }
 
