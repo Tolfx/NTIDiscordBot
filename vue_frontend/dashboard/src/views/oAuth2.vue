@@ -32,7 +32,7 @@ export default {
                 "client_id": "835552682030792725",
                 // Add discord client secret
                 //@ArvidAnderson
-                "client_secret": process.env.(...),
+                "client_secret": process.env.DISCORD_CLIENT_SECRET,
                 "grant_type": "authorization_code",
                 "code": getParameterByName("code"),
                 "redirect_uri": "http://localhost:8080/oauth2",
