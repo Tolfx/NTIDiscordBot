@@ -1,5 +1,11 @@
 import { Document, Model, model, Schema } from "mongoose"
 
+interface StudenI extends Document {
+    discordId: string;
+    schoolSoftId: string;
+    fullname: string;
+}
+
 const StudenSchema = new Schema
 (
     {
@@ -11,17 +17,15 @@ const StudenSchema = new Schema
 
         schoolSoftId: {
             type: String,
-            required: true,
         },
 
         fullname: {
             type: String,
-            required: true,
         },
 
     }
 );
 
-const Student = model("students", StudenSchema);
+const Student = model<StudenI>("students", StudenSchema);
 
 export default Student;
