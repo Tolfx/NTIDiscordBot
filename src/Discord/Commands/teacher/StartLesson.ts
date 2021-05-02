@@ -4,6 +4,8 @@ import ms from "ms";
 import { Student } from "../../../Interfaces/Lessons";
 import dateFormat from "date-and-time";
 import EventListener from "../../../Lib/EventListener";
+import StudentSchema from "../../../Models/Student";
+import log from "../../../Lib/Logger";
 
 export const name = "start_lesson";
 
@@ -49,6 +51,21 @@ export async function run(client: Client, message: Message, args: string[])
     // Gather all students
     const students = currentVoiceChannel.members.filter((member) => member.id !== message.author.id);
     const student: Array<Student> = students.map(e => {
+        
+        StudentSchema.findOne({ discordId: e.id }).then(s => {
+            if(!s)
+            {
+                new StudentSchema({
+                    discordId: e.id,
+                    schoolSoftId: "",
+                    fullname: e.nickname ?? "",
+                }).save();
+            }
+        }).catch(() => {
+            log.error(`Failed to create new user in database.`, log.trace());
+        })
+
+
         return {
             memberId: e.id,
             //schoolSoftId?: ;
@@ -81,6 +98,8 @@ export async function run(client: Client, message: Message, args: string[])
         mainChannel,
         endsAt: lessonEnds,
         ended: false,
+        break: false,
+        breaks: [],
         students: student
     }).save().then(e => EventListener.emit("newLesson", e));
     
