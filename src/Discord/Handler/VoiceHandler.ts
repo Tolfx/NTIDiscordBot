@@ -10,7 +10,7 @@ EventListener.on("newLesson", (data: Lesson) => {
 });
 
 EventListener.on("endedLesson", (data: Lesson) => {
-    const index = lessons.findIndex(lesson => lesson._id === data._id);
+    const index = lessons.findIndex(lesson => lesson.id === data.id);
     if (index > -1) {
         lessons.splice(index, 1);
     }
