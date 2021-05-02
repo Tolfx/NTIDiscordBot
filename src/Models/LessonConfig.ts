@@ -51,6 +51,16 @@ const ConfigLessonSchema = new Schema
             required: false,
         },
 
+        hall: {
+            type: String,
+            required: false,
+        },
+
+        logChannel: {
+            type: String,
+            required: false,
+        }
+
     }
 );
 
