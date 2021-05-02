@@ -3,7 +3,6 @@ import session from "express-session";
 import cors from "cors";
 import methodOverride from "method-override";
 import { ExpressPort as PORT, SecretAuth } from "../Config";
-import OAuthRouter from "./Routers/OauthRouter";
 import OAuth2 from "./Structures/Oauth2";
 import log from "../Lib/Logger";
 import { Client } from "discord.js";
@@ -62,7 +61,6 @@ export default class ExpressServer
         });
     
         // Routes goes here..
-        //new OAuthRouter(this.server, this.Oauth, this.client);
         new UserRouter(this.server, this.Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
