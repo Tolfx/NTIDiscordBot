@@ -18,7 +18,7 @@ export default class UserRouter {
         this.router = Router();
         this.oauth = oauth;
         this.client = client;
-        this.server.use("/user", EnsureAuth, this.router);
+        this.server.use("/user", EnsureAuth(this.oauth), this.router);
 
         this.router.get("/get/information", async (req, res) => {
             try {
