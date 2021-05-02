@@ -17,38 +17,38 @@ pipeline {
 
     stages {
 
-        stage("Build") {
+        dir("./backend") {
+            
+            stage("Build") {
 
-            steps {
-                echo 'Checking nodejs stuff.'
-                sh 'cd ./backend'
-                sh 'npm --version'
-                sh 'node --version'
-                sh 'npm install'
-                sh 'npm i typescript -g'
-                sh 'tsc'
+                steps {
+                    echo 'Checking nodejs stuff.'
+                    sh 'npm --version'
+                    sh 'node --version'
+                    sh 'npm install'
+                    sh 'npm i typescript -g'
+                    sh 'tsc'
+                }
+
             }
 
-        }
+            stage("Testing") {
 
-        stage("Testing") {
+                steps {
+                    echo 'Starting server.'
+                    sh 'node ./build/Server.js'
+                }
 
-            steps {
-                echo 'Starting server.'
-                sh 'cd ./backend'
-                sh 'node ./build/Server.js'
             }
 
-        }
+            stage("Deploy") {
 
-        stage("Deploy") {
+                steps {
+                    echo 'Find a solution here please..'
+                    echo 'Currently trying to solve for plesk.'
+                }
 
-            steps {
-                echo 'Find a solution here please..'
-                echo 'Currently trying to solve for plesk.'
             }
-
         }
-
     }
 }
