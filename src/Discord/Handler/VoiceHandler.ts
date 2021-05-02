@@ -17,7 +17,7 @@ EventListener.on("endedLesson", (data: Lesson) => {
 });
 
 EventListener.on("updateLesson", (data: Lesson) => {
-    const index = lessons.findIndex(lesson => lesson._id === data._id);
+    const index = lessons.findIndex(lesson => lesson.id === data.id);
     if (index > -1) {
         lessons[index] = data;
     }
@@ -51,14 +51,17 @@ export default function VoiceHandler(
         const voiceChannelId = (newState.channel?.id ?? oldState.channel?.id) ?? "";
         const userId = newState.id;
         const lesson = getLesson(voiceChannelId, lessons);
+
         if(lesson.teacherId === userId)
+            return;
+
+        if(lesson.break)
             return;
         
         const student = getStudentIndex(lesson, userId);
 
         if(student === -1)
             return;
-
 
         // Check if user left a voice channel.
         if(newState.channelID === null && oldState.channelID)
@@ -83,7 +86,8 @@ export default function VoiceHandler(
         }
 
         // Check if camera turned on
-        if(newState.selfVideo)
+
+        if(newState.selfVideo && !oldState.selfVideo)
         {
             lesson.students[student].hasCameraBeenOn = true;
             lesson.students[student].cameraOn = true;
@@ -95,7 +99,7 @@ export default function VoiceHandler(
         }
 
         // Check if camera turned off
-        if(!newState.selfVideo)
+        if(!newState.selfVideo && oldState.selfVideo)
         {
             lesson.students[student].cameraOn = false;
             //@ts-ignore
@@ -105,7 +109,7 @@ export default function VoiceHandler(
         }
 
         // Check if stream is on
-        if(newState.streaming)
+        if(newState.streaming && !oldState.streaming)
         {
             lesson.students[student].hasBeenStreaming = true;
             lesson.students[student].isStreaming = true;
@@ -117,7 +121,7 @@ export default function VoiceHandler(
         }
 
         // Check if stream is off
-        if(!newState.streaming)
+        if(!newState.streaming && oldState.streaming)
         {
             lesson.students[student].isStreaming = true;
             //@ts-ignore
