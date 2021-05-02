@@ -9,6 +9,8 @@ export interface Lesson extends Document
     issuedAt: Date;
     endsAt: Date;
     ended: boolean;
+    break: boolean;
+    breaks: Array<Breaks>;
     students: Array<Student>;
 }
 
@@ -56,4 +58,10 @@ export interface Message
 {
     messageId: string;
 
+}
+
+export interface Breaks
+{
+    startedAt: Date;
+    endsAt: Date;
 }
