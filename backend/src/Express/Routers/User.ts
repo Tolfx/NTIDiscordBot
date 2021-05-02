@@ -21,33 +21,27 @@ export default class UserRouter {
         this.server.use("/user", EnsureAuth(this.oauth), this.router);
 
         this.router.get("/get/information", async (req, res) => {
-            try {
-                const ID = (await this.oauth.resolveInformation(req)).id;
-                const user = this.client.users.cache.find(r => r.id === ID);
-                if(!user)
-                {
-                    return API_Responses.API_Error("Unable to find user")(res);
-                }
-    
-                let result: UserInformation = 
-                {
-                    avatar: user.avatar,
-                    bot: user.bot,
-                    createdAt: user.createdAt,
-                    createdTimestamp: user.createdTimestamp,
-                    defaultAvatarURL: user.defaultAvatarURL,
-                    id: user.id,
-                    presence: user.presence,
-                    tag: user.tag,
-                    username: user.username
-                }
-    
-                return API_Responses.API_Success(result)(res);
-            } catch(e)
+            const ID = (await this.oauth.resolveInformation(req)).id;
+            const user = this.client.users.cache.find(r => r.id === ID);
+            if(!user)
             {
-                console.log(e);
-                return API_Responses.API_Error("Something went wrong.")(res);
+                return API_Responses.API_Error("Unable to find user")(res);
             }
+
+            let result: UserInformation = 
+            {
+                avatar: user.avatar,
+                bot: user.bot,
+                createdAt: user.createdAt,
+                createdTimestamp: user.createdTimestamp,
+                defaultAvatarURL: user.defaultAvatarURL,
+                id: user.id,
+                presence: user.presence,
+                tag: user.tag,
+                username: user.username
+            }
+
+            return API_Responses.API_Success(result)(res);
         });
 
         this.router.post("/post/mute/:userId", async (req, res) => {
