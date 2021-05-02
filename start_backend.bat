@@ -12,7 +12,8 @@ EXIT 1
 :START_BACKEND
 timeout /t 10 /nobreak
 rem Launch script
-node .\backend\build\Server.js
+cd ./backend
+node ./build/Server.js
 
 rem If it crashes go back to launch
 GOTO START_BACKEND
