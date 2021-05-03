@@ -7,7 +7,10 @@ export default createStore({
   mutations: {
   },
   actions: {
-
+    logout (state) {
+        state.token = ''
+        localStorage.removeItem('token')
+    }
   },
   getters : {
     isLoggedIn: state => !!state.token,

@@ -11,8 +11,25 @@ export default {
     const router = useRouter();
     const store = useStore();
 
-
     router.beforeEach((to, from, next) => {
+      //Validate Token
+      if (store.state.token != '') {
+        fetch("http://localhost:5623/validate/token", {
+            method: "GET",
+            headers: {
+              "authorization": store.state.token
+            }
+          }
+        ).then(response => {
+            if (response.status != 200) {
+                console.log('Token not valid')
+                store.dispatch('logout')
+            } else {
+              console.log('Token valid')
+            }
+        })
+      }
+      //Check if user is authorizted to view page
       if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.

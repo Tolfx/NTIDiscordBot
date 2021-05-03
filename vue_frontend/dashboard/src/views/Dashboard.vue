@@ -5,13 +5,14 @@
   </div>
 </template>
 <script>
-
+import { useStore } from 'vuex'
 export default {
   setup() {
-
+    const store = useStore();
     const Logout = () => {
-      localStorage.removeItem('token')
+      store.dispatch('logout')
     }
+
     return {
       Logout
     }
