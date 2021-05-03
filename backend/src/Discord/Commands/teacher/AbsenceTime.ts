@@ -35,7 +35,7 @@ export async function run(client: Client, message: Message, args: string[])
     }
 
     const studentIndex = NowLesson.students.findIndex(e => e.memberId === user.id);
-    const absence = NowLesson.students[studentIndex].absense;
+    const absence = NowLesson.students[studentIndex].absence;
     const student = NowLesson.students[studentIndex];
     if(absence.length <= 0)
         return message.channel.send(`<@${student.memberId}> got no absence, amazing!`);

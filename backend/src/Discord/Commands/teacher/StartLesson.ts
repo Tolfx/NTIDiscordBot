@@ -70,7 +70,7 @@ export async function run(client: Client, message: Message, args: string[])
             memberId: e.id,
             //schoolSoftId?: ;
             voiceChannelId: currentVoiceChannel.id,
-            absense: [],
+            absence: [],
             leftVoiceChannel: false,
             hasLeftVoiceChannel: false,
             messages: [],
