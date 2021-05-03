@@ -18,7 +18,7 @@ export default class ValidationRouter {
         this.client = client;
         this.server.use("/validate", this.router);
 
-        this.router.get("/token", async (req, res) => {
+        this.router.get("/token", (req, res) => {
             const authHeader = req.headers['authorization'];
             const token = authHeader;
             if (token == null)

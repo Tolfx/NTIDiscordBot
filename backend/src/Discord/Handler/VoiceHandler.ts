@@ -68,7 +68,7 @@ export default function VoiceHandler(
         {
             lesson.students[student].hasLeftVoiceChannel = true;
             lesson.students[student].leftVoiceChannel = true;
-            lesson.students[student].absense.push({
+            lesson.students[student].absence.push({
                 leftAt: new Date(),
             });
             lesson.markModified('students');
@@ -80,7 +80,7 @@ export default function VoiceHandler(
         {
             lesson.students[student].leftVoiceChannel = false;
             //@ts-ignore
-            lesson.students[student].absense.find(e => !e.cameBackAt)?.cameBackAt = new Date();
+            lesson.students[student].absence.find(e => !e.cameBackAt)?.cameBackAt = new Date();
             lesson.markModified('students');
             lesson.save();
         }
