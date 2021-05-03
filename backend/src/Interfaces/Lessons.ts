@@ -19,7 +19,7 @@ export interface Student
     memberId: string;
     schoolSoftId?: string;
     voiceChannelId: string;
-    absense: Array<Absense>;
+    absence: Array<Absence>;
     leftVoiceChannel: boolean;
     hasLeftVoiceChannel: boolean;
     messages?: Array<Message>;
@@ -35,7 +35,7 @@ export interface Student
     pre_registered?: boolean;
 }
 
-export interface Absense
+export interface Absence
 {
     leftAt: Date;
     cameBackAt?: Date;
