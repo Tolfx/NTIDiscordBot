@@ -23,14 +23,10 @@ export async function run(client: Client, message: Message, args: string[])
     //@ts-ignore   
     const currentVoiceChannel = message.member.voice.channel;
     if(!currentVoiceChannel)
-    {
         return message.channel.send(`Please join a \`voice channel\` to start a lesson`);
-    }
 
     if(!args[0])
-    {
         return message.channel.send(`Specify how long this lesson should be.`);
-    }
 
     const amountOfTime: number = args.map(e => {
         return ms(e)
@@ -62,8 +58,7 @@ export async function run(client: Client, message: Message, args: string[])
             }
         }).catch(() => {
             log.error(`Failed to create new user in database.`, log.trace());
-        })
-
+        });
 
         return {
             memberId: e.id,
@@ -83,15 +78,14 @@ export async function run(client: Client, message: Message, args: string[])
             isOnMobile: e.presence.clientStatus?.mobile ? true : false,
             presence: e.presence.status,
             pre_registered: false,
-
         }
     });
+
     const mainChannel = currentVoiceChannel.id;
 
-    // This is a fucking annoying bullshit.
-    // Idk why but god of javascript said so.
     const date = new Date();
     const lessonEnds = (dateFormat.addMilliseconds(date, amountOfTime));
+    
     new Lesson({
         teacherId: message.author.id,
         mainChannel,
