@@ -12,11 +12,11 @@ export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
+    //@ts-ignore
+    const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
-    if(false)
-    {
-        return;
-    }
+    if(!isAdmin)
+        return message.channel.send(`You are not an administrator`);
 
     if(!args[0])
         return message.channel.send(`Please add how long the break shall be.`);
@@ -31,11 +31,9 @@ export async function run(client: Client, message: Message, args: string[])
         break: false
     });
 
+    // Tell author it already has no active lesson....
     if(!NowLesson)
-    {
-        // Tell author it already has no active lesson....
-        return;
-    }
+        return message.reply(`You have no active lessons!`);
 
     NowLesson.break = true;
     NowLesson.breaks.push({

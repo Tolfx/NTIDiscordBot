@@ -6,6 +6,7 @@ import dateFormat from "date-and-time";
 import EventListener from "../../../Lib/EventListener";
 import StudentSchema from "../../../Models/Student";
 import log from "../../../Lib/Logger";
+import { Admin_Role_Id } from "../../../Config";
 
 export const name = "start_lesson";
 
@@ -13,23 +14,19 @@ export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
+    //@ts-ignore
+    const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
-    if(false)
-    {
-        return;
-    }
+    if(!isAdmin)
+        return message.channel.send(`You are not an administrator`);
 
     //@ts-ignore   
     const currentVoiceChannel = message.member.voice.channel;
     if(!currentVoiceChannel)
-    {
         return message.channel.send(`Please join a \`voice channel\` to start a lesson`);
-    }
 
     if(!args[0])
-    {
         return message.channel.send(`Specify how long this lesson should be.`);
-    }
 
     const amountOfTime: number = args.map(e => {
         return ms(e)
@@ -40,11 +37,9 @@ export async function run(client: Client, message: Message, args: string[])
         ended: false
     });
 
+    // Tell author it already has an active lesson....
     if(hasAnLessonActive)
-    {
-        // Tell author it already has an active lesson....
-        return;
-    }
+        return message.reply(`You already have an active lesson!`);
 
     // Has no active lessons, lets create one!
 
@@ -63,8 +58,7 @@ export async function run(client: Client, message: Message, args: string[])
             }
         }).catch(() => {
             log.error(`Failed to create new user in database.`, log.trace());
-        })
-
+        });
 
         return {
             memberId: e.id,
@@ -84,15 +78,14 @@ export async function run(client: Client, message: Message, args: string[])
             isOnMobile: e.presence.clientStatus?.mobile ? true : false,
             presence: e.presence.status,
             pre_registered: false,
-
         }
     });
+
     const mainChannel = currentVoiceChannel.id;
 
-    // This is a fucking annoying bullshit.
-    // Idk why but god of javascript said so.
     const date = new Date();
     const lessonEnds = (dateFormat.addMilliseconds(date, amountOfTime));
+    
     new Lesson({
         teacherId: message.author.id,
         mainChannel,
