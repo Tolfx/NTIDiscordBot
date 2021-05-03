@@ -1,6 +1,6 @@
 export const ExpressPort = process.env.EXPRESS_PORT ?? 5623;
 export const Discord_Prefix = "!";
-export const Admin_Role_Id = "";
+export const Admin_Role_Id = "835552201346121738";
 export const Discord_Token = process.env.DISCORD_TOKEN ?? "";
 export const callbackURL = process.env.CALLBACK_URL ?? "http://localhost:5623/oauth/callback",
     clientID = process.env.DISCORD_CLIENT_ID ?? "", 
