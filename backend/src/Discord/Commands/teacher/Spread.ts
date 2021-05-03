@@ -8,11 +8,11 @@ export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
+    //@ts-ignore
+    const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
-    if(false)
-    {
-        return;
-    }
+    if(!isAdmin)
+        return message.channel.send(`You are not an administrator`);
 
     let NowLesson = await Lesson.findOne({
         teacherId: message.author.id,
@@ -21,7 +21,7 @@ export async function run(client: Client, message: Message, args: string[])
 
     // Tell author it already has no active lesson....
     if(!NowLesson)
-        return message.channel.send(`You have no active lessons.`);
+        return message.reply(`You have no active lessons!`);
 
     const students = NowLesson.students;
     if(students.length <= 0)
