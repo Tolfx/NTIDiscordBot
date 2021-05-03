@@ -23,9 +23,10 @@ export default {
         ).then(response => {
             if (response.status != 200) {
                 console.log('Token not valid')
-                store.dispatch('logout')
+                store.dispatch('auth_logout')
             } else {
               console.log('Token valid')
+              store.dispatch('auth_success', store.state.token)
             }
         })
       }

@@ -41,15 +41,16 @@ export default {
         }).then(response => response.json())
         .then(response => { 
             const access_token = response["access_token"];
-            // Arvid fixa expiresIn grejer alltså...
-            // Får huvudvärk
+            
             const jwt_token = jwt.sign({
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     data: access_token,
                 },
                 process.env.VUE_APP_ACCESS_TOKEN_SECRET, 
             );
+            //Storing the JWT Token in localstorage and vuex
             localStorage.setItem('token', jwt_token);
+            //Debug message
             console.log("Signed in");
             //router.push('/dashboard');
         }).catch(e => {
