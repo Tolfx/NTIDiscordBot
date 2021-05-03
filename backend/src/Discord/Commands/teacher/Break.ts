@@ -47,15 +47,34 @@ export async function run(client: Client, message: Message, args: string[])
 
     EventListener.emit("updateLesson", NowLesson);
     message.channel.send(`Break for: ${prettyMilliseconds(amountOfTime)}!`).then(msg => {
-        setTimeout(() => {
+        setTimeout(async () => {
             if(!NowLesson)
             {
                 return;
             }
             NowLesson.break = false;
-            NowLesson.save();
+            await NowLesson.save();
             EventListener.emit("updateLesson", NowLesson);
             msg.channel.send(`Break is over!`);
+
+            // Check if any students joined back / or even left?
+            const students = NowLesson.students;
+            students.forEach(async (student, index) => {
+                const studentId = student.memberId;
+                //@ts-ignore
+                const user = message.guild.members.cache.find(i => i.id === studentId);
+                if(!user)
+                    return;
+                
+                if(!user.voice.channelID)
+                {
+                    NowLesson?.students[index].absence.push({
+                        leftAt: new Date()
+                    });
+                    NowLesson?.markModified('students');
+                    await NowLesson?.save();
+                }
+            });
         }, amountOfTime);
     })
 }
