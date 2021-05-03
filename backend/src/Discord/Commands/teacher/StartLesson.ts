@@ -6,6 +6,7 @@ import dateFormat from "date-and-time";
 import EventListener from "../../../Lib/EventListener";
 import StudentSchema from "../../../Models/Student";
 import log from "../../../Lib/Logger";
+import { Admin_Role_Id } from "../../../Config";
 
 export const name = "start_lesson";
 
@@ -13,10 +14,12 @@ export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
+    //@ts-ignore
+    const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
-    if(false)
+    if(!isAdmin)
     {
-        return;
+        return message.channel.send(`You are not an administrator`);
     }
 
     //@ts-ignore   
