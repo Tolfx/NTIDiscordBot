@@ -2,7 +2,8 @@
   <div class="bg-gray-600 h-screen flex items-center justify-center">
     <div>
       <h1>{{loggedin}}</h1>
-      <h1>{{authStatus}}</h1>
+      <h1>{{authenticated}}</h1>
+      <h1>{{user}}</h1>
       <button @click="signInWithDiscord()" class="bg-discord hover:bg-gray-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
         <img class="h-10" src = "../assets/logos/Discord-Logo-White.svg" alt="Logo"/>
         <span>Sign in with Discord</span>
@@ -30,7 +31,8 @@ export default {
     return {
       signInWithDiscord,
       loggedin: computed(() => store.getters.isLoggedIn),
-      authStatus: computed(() => store.getters.authStatus)
+      authenticated: computed(() => store.state.status),
+      user: computed(() => store.state.userInformation)
     }
   }
 }

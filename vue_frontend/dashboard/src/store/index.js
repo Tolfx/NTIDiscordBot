@@ -8,11 +8,11 @@ export default createStore({
   },
   mutations: {
     auth_success(state, userInformation) {
-      state.status = 'Authenticated'
+      state.status = true
       state.userInformation = userInformation
     },
     auth_logout(state) {
-      state.status = 'Not Authenticated'
+      state.status = false
       state.userInformation = {}
     }
   },
@@ -23,7 +23,7 @@ export default createStore({
           headers: {
             "authorization": token
           }
-        }
+      }
       ).then(response =>
         response.json()
       ).then(data => {
