@@ -13,9 +13,7 @@ export async function run(client: Client, message: Message, args: string[])
     const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
     if(!isAdmin)
-    {
         return message.channel.send(`You are not an administrator`);
-    }
 
     if(!args[0])
         return message.channel.send(`Please mention a user`);
@@ -30,11 +28,9 @@ export async function run(client: Client, message: Message, args: string[])
         ended: false
     });
 
+    // Tell author it already has no active lesson....
     if(!NowLesson)
-    {
-        // Tell author it already has no active lesson....
         return message.reply(`You have no active lessons!`);
-    }
 
     const studentIndex = NowLesson.students.findIndex(e => e.memberId === user.id);
     const absence = NowLesson.students[studentIndex].absence;

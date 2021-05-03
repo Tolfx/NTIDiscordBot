@@ -18,9 +18,7 @@ export async function run(client: Client, message: Message, args: string[])
     const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
     if(!isAdmin)
-    {
         return message.channel.send(`You are not an administrator`);
-    }
 
     //@ts-ignore   
     const currentVoiceChannel = message.member.voice.channel;
@@ -43,11 +41,9 @@ export async function run(client: Client, message: Message, args: string[])
         ended: false
     });
 
+    // Tell author it already has an active lesson....
     if(hasAnLessonActive)
-    {
-        // Tell author it already has an active lesson....
         return message.reply(`You already have an active lesson!`);
-    }
 
     // Has no active lessons, lets create one!
 
