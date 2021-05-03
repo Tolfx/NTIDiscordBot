@@ -23,7 +23,7 @@ export async function run(client: Client, message: Message, args: string[])
 
     // Tell author it already has no active lesson....
     if(!NowLesson)
-        return message.channel.send(`You have no active lessons.`);
+        return message.reply(`You have no active lessons!`);
 
     const students = NowLesson.students;
     if(students.length <= 0)

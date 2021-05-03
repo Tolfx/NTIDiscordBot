@@ -27,13 +27,7 @@ export async function run(client: Client, message: Message, args: string[])
     if(!NowLesson)
     {
         // Tell author it already has no active lesson....
-        return;
-    }
-
-    if(NowLesson.ended)
-    {
-        // Tell author....
-        return;
+        return message.reply(`You have no active lessons!`);
     }
 
     NowLesson.ended = true;

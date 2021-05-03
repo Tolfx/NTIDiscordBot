@@ -46,7 +46,7 @@ export async function run(client: Client, message: Message, args: string[])
     if(hasAnLessonActive)
     {
         // Tell author it already has an active lesson....
-        return;
+        return message.reply(`You already have an active lesson!`);
     }
 
     // Has no active lessons, lets create one!
