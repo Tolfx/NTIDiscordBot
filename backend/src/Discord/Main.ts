@@ -7,6 +7,7 @@ import ExpressServer from "../Express/Main";
 import { Guild } from "discord.js";
 import VoiceHandler from "./Handler/VoiceHandler";
 import reCache from "./Handler/Caching";
+import SlashCommands from "./Handler/SlashCommands";
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -15,6 +16,7 @@ declare module 'discord.js'
       commands: Collection<string, RunEvent>;
       category: string[];
     }
+
 }
 
 /*
@@ -64,6 +66,7 @@ export default function StartDiscordBot()
         })
     });
 
+
     client.on("message", (message: Message) => {
         //If the bot is sending it self a message
         if (message.author.bot) return;
@@ -105,6 +108,7 @@ export default function StartDiscordBot()
     });
 
     reCache();
+    SlashCommands(client);
 
     client.login(Discord_Token);
 };
