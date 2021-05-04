@@ -1,4 +1,4 @@
-import { Client, MessageEmbed, APIMessage } from "discord.js";
+import { Client, MessageEmbed, APIMessage, Message, TextChannel } from "discord.js";
 import { Discord_Guild_Id, Discord_Token } from "../../Config";
 import { DiscordInteractions, Interaction } from "slash-commands";
 
@@ -64,12 +64,23 @@ export default async function SlashCommands(client: Client)
     client.ws.on('INTERACTION_CREATE', async (interaction: Interaction) => {
         const command = interaction.data?.name.toLowerCase();
         const args = interaction.data?.options;
-        
-        if(command === "start_lesson")
+        if(command)
         {
-            const embed = new MessageEmbed()
-            .setDescription("Hello :D")
-            reply(interaction, embed)
+            let handler = (client.commands.get(command))?.run;
+            const guild = client.guilds.cache.find(e => e.id === interaction.guild_id);
+            const message = (guild?.channels.cache.find(e => e.id === interaction.channel_id) as TextChannel)//?.messages.fetch(interaction.channel_id)
+            console.log(message.messages.cache.get(message.messages.channel.lastMessageID ?? ""))
+            // If we found and command execute it.
+            reply(interaction, "ah")
+            if (command) {
+                handler?.(
+                    client,
+                    await message,
+                    //@ts-ignore
+                    args
+                );
+            };
         }
+
     });
 }
