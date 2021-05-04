@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 
+import { apiURL } from '../settings.js'
+
 export default createStore({
   state: {
     token: localStorage.getItem('token') || '',
@@ -18,7 +20,7 @@ export default createStore({
   },
   actions: {
     auth_success({commit}, token) {
-      fetch("http://localhost:5623/user/get/information", {
+      fetch(`${apiURL}user/get/information`, {
           method: "GET",
           headers: {
             "authorization": token

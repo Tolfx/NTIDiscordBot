@@ -7,13 +7,16 @@
 </template>
 
 <script>
-//import { useRouter } from 'vue-router';
+import { webURL } from '../settings.js'
+import { useRouter } from 'vue-router';
+//import { useStore } from 'vuex'
 const jwt = require('jsonwebtoken')
 
 export default {
     setup () {
-        //const router = useRouter();
-
+        const router = useRouter();
+        //const store = useStore();
+        
         function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\\[\\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -22,6 +25,8 @@ export default {
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+
+        //Fetching Discord API
         fetch("https://discord.com/api/oauth2/token", {
             method: "POST",
             headers: {
@@ -30,15 +35,14 @@ export default {
             //@ts-ignore
             body: new URLSearchParams({
                 "client_id": "835552682030792725",
-                // Add discord client secret
-                //@ArvidAnderson
                 "client_secret": process.env.VUE_APP_DISCORD_CLIENT_SECRET,
                 "grant_type": "authorization_code",
                 "code": getParameterByName("code"),
-                "redirect_uri": "http://localhost:8080/oauth2",
+                "redirect_uri": `${webURL}oauth2`,
                 "scope": "identify"
             })
-        }).then(response => response.json())
+        })
+        .then(response => response.json())
         .then(response => { 
             const access_token = response["access_token"];
             
@@ -52,10 +56,11 @@ export default {
             localStorage.setItem('token', jwt_token);
             //Debug message
             console.log("Signed in");
-            //router.push('/dashboard');
-        }).catch(e => {
+            router.push('/dashboard');
+        })
+        .catch(e => {
             console.log(e);
-            //router.push('/');
+            router.push('/')
         })
     }
 }

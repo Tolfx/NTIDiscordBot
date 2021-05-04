@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { webURL } from '../settings.js'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 export default {
@@ -22,7 +23,7 @@ export default {
 
     const signInWithDiscord = () => {
       console.log('Initiating discord sign in');
-      const callbackURL = "http://localhost:8080/oauth2",
+      const callbackURL = `${webURL}oauth2`,
       clientID = "835552682030792725";
       window.location.href = 
       `https://discord.com/oauth2/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(callbackURL)}&response_type=code&scope=${encodeURIComponent("identify guilds")}`;
