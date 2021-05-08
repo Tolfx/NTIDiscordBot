@@ -4,37 +4,6 @@ import { DiscordInteractions, Interaction } from "slash-commands";
 
 export default async function SlashCommands(client: Client)
 {
-    const createAPIMessage = async (interaction: Interaction, content: any) => {
-        const { data, files } = await APIMessage.create(
-            //@ts-ignore
-            client?.channels?.resolve(interaction?.channel_id),
-        content
-        )
-            .resolveData()
-            .resolveFiles()
-    
-        return { ...data, files }
-    }
-
-    const reply = async (interaction: Interaction, response: any) => {
-        let data = {
-            content: response,
-        }
-
-        if (typeof response === 'object') {
-            //@ts-ignore
-            data = await createAPIMessage(interaction, response)
-        }
-
-        //@ts-ignore
-        client.api.interactions(interaction.id, interaction.token).callback.post({
-            data: {
-            type: 4,
-            data,
-            },
-        })
-    }
-
     const interaction = new DiscordInteractions({
         applicationId: "835552682030792725",
         authToken: Discord_Token,
@@ -60,28 +29,30 @@ export default async function SlashCommands(client: Client)
         .catch(console.error);
 
     // Working on this later.
-    /*
     //@ts-ignore
     client.ws.on('INTERACTION_CREATE', async (interaction: Interaction) => {
         const command = interaction.data?.name.toLowerCase();
         const args = interaction.data?.options;
         if(command)
         {
-            let handler = (client.commands.get(command))?.run;
+            let handler = (client.commands.get(command))?.run_slash;
+            //@ts-ignore
             const guild = client.guilds.cache.find(e => e.id === interaction.guild_id);
-            const message = (guild?.channels.cache.find(e => e.id === interaction.channel_id) as TextChannel)//?.messages.fetch(interaction.channel_id)
-            console.log(message.messages.cache.get(message.messages.channel.lastMessageID ?? ""))
+            //@ts-ignore
+            const channel = guild?.channels.cache.get(interaction.channel_id) as TextChannel
+            const author = guild?.members.cache.get(interaction.member.user.id);
+
             // If we found and command execute it.
-            reply(interaction, "ah")
             if (command) {
                 handler?.(
                     client,
-                    await message,
+                    interaction,
                     //@ts-ignore
+                    author,
+                    channel,
                     args
                 );
             };
         }
     });
-    */
 }
