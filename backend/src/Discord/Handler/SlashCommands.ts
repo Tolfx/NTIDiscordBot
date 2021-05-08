@@ -59,7 +59,8 @@ export default async function SlashCommands(client: Client)
         .createApplicationCommand(Start_Lesson_Command, Discord_Guild_Id)
         .catch(console.error);
 
-
+    // Working on this later.
+    /*
     //@ts-ignore
     client.ws.on('INTERACTION_CREATE', async (interaction: Interaction) => {
         const command = interaction.data?.name.toLowerCase();
@@ -81,6 +82,6 @@ export default async function SlashCommands(client: Client)
                 );
             };
         }
-
     });
+    */
 }
