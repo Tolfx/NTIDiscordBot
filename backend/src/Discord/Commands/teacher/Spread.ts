@@ -1,6 +1,6 @@
-import { Message, MessageEmbed, Client, Role } from "discord.js";
+import { Message, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
-import { CreateRole, CreateVoiceChannel } from "../../../Lib/DiscordFunc/ServerFunctions";
+import { CreateRole } from "../../../Lib/DiscordFunc/ServerFunctions";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 
 export const name = "spread";

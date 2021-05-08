@@ -1,4 +1,4 @@
-import { Client, MessageEmbed, APIMessage, Message, TextChannel } from "discord.js";
+import { Client, TextChannel } from "discord.js";
 import { Discord_Guild_Id, Discord_Token } from "../../Config";
 import { DiscordInteractions, Interaction } from "slash-commands";
 

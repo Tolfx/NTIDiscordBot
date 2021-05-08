@@ -1,4 +1,4 @@
-import { Message, MessageEmbed, Client } from "discord.js";
+import { Message, Client, GuildMember, TextChannel } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import ms from "ms";
 import { Student } from "../../../Interfaces/Lessons";
@@ -10,8 +10,6 @@ import { arg_slash } from "../../../Interfaces/RunEvent";
 import { Interaction } from "slash-commands";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 import reply from "../../../Lib/DiscordFunc/SlashReply";
-import { TextChannel } from "discord.js";
-import { GuildMember } from "discord.js";
 
 export const name = "start_lesson";
 

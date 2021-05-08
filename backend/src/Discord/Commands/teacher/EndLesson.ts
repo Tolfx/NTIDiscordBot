@@ -1,8 +1,5 @@
-import { Message, MessageEmbed, Client } from "discord.js";
+import { Message, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
-import ms from "ms";
-import { Student } from "../../../Interfaces/Lessons";
-import dateFormat from "date-and-time";
 import EventListener from "../../../Lib/EventListener";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 

@@ -1,4 +1,4 @@
-import { Message, MessageEmbed, Client } from "discord.js";
+import { Message, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import prettyMilliseconds from "pretty-ms";
 import dateFormat from "date-and-time";

@@ -1,9 +1,8 @@
-import { Message, MessageEmbed, Client } from "discord.js";
+import { Message, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import prettyMilliseconds from "pretty-ms";
 import ms from "ms";
 import dateFormat from "date-and-time";
-import { stripIndent } from "common-tags";
 import EventListener from "../../../Lib/EventListener";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 
