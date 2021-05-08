@@ -1,5 +1,5 @@
 import { readdirSync, readFile } from "fs";
-import RunEvent from "../../Interfaces/RunEvent";
+import RunEvent from "../../Interfaces/Command";
 
 /**
  * 
