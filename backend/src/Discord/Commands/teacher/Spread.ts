@@ -1,6 +1,7 @@
 import { Message, MessageEmbed, Client, Role } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import { CreateRole, CreateVoiceChannel } from "../../../Lib/DiscordFunc/ServerFunctions";
+import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 
 export const name = "spread";
 
@@ -8,10 +9,8 @@ export const cat = "teacher";
 
 export async function run(client: Client, message: Message, args: string[])
 {
-    //@ts-ignore
-    const isAdmin = (message?.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     // Check if user is a techer (is admin..);
-    if(!isAdmin)
+    if(!isAdmin(message))
         return message.channel.send(`You are not an administrator`);
 
     let NowLesson = await Lesson.findOne({
