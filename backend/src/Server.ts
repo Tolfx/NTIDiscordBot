@@ -42,4 +42,4 @@ fs.readFile(process.cwd()+"/.env", (err, data) => {
             log.info(`Succesfully created file.`);
         });
     }
-})
+});

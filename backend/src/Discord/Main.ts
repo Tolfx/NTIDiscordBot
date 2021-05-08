@@ -1,6 +1,6 @@
 import { Client, Collection, Message } from "discord.js";
 import CommandHandler from "./Handler/Commands";
-import RunEvent from "../Interfaces/RunEvent"
+import RunEvent from "../Interfaces/Command"
 import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
@@ -39,10 +39,10 @@ Guide: How to create a new command.
 
 */
 
+const client = new Client();
 
 export default function StartDiscordBot()
 {
-    const client = new Client();
 
     client.commands = new Collection();
 

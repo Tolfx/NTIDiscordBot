@@ -1,4 +1,4 @@
-import RunEvent from "../../../Interfaces/RunEvent";
+import RunEvent from "../../../Interfaces/Command";
 import { stripIndents } from "common-tags";
 import { Message, MessageEmbed, Client } from "discord.js";
 
