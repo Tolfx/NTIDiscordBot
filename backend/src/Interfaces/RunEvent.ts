@@ -1,18 +1,19 @@
-import { Client, Message } from "discord.js";
+import { TextChannel } from "discord.js";
+import { Client, Message, GuildMember } from "discord.js";
+import { ApplicationCommandInteractionDataOption, Interaction } from "slash-commands";
 
-type RunEvent = (
+export type arg_slash = ApplicationCommandInteractionDataOption[] | undefined;
+
+export type RunEvent = (
     client: Client,
     message: Message,
-    args: string[]
+    args: string[] | ApplicationCommandInteractionDataOption[] | undefined
 ) => void;
 
-interface Command
-{
-    name: string;
-    cat: string;
-    description: string;
-    usage: string;
-    run: RunEvent;
-}
-
-export default Command
+export type RunEventSlash = (
+    client: Client,
+    interaction: Interaction,
+    author: GuildMember,
+    channel: TextChannel,
+    args: arg_slash
+) => void;
