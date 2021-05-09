@@ -1,6 +1,8 @@
 import { Client, TextChannel } from "discord.js";
 import { Discord_Guild_Id, Discord_Token } from "../../Config";
 import { DiscordInteractions, Interaction } from "slash-commands";
+import { GuildMember } from "discord.js";
+import SlashCommandsArray from "../../Lib/DiscordFunc/SlashCommands";
 
 export default async function SlashCommands(client: Client)
 {
@@ -10,23 +12,12 @@ export default async function SlashCommands(client: Client)
         publicKey: "4371ee2c0822bc337ea24ca76a72014a27ad1343c31d3bb0a5e1a5cf38f340ef",
     });
 
-    const Start_Lesson_Command = {
-        "name": "start_lesson",
-        "description": "Starts a lesson",
-        "options": [
-            {
-                "type": 3,
-                "name": "time",
-                "description": "How long is the lesson?",
-                "default": false,
-                "required": true
-            }
-        ]
+    for (let i = 0; i < SlashCommandsArray.length; i++)
+    {
+        await interaction
+            .createApplicationCommand(SlashCommandsArray[i], Discord_Guild_Id)
+            .catch(console.error);
     }
-
-    await interaction
-        .createApplicationCommand(Start_Lesson_Command, Discord_Guild_Id)
-        .catch(console.error);
 
     // Working on this later.
     //@ts-ignore
@@ -40,14 +31,13 @@ export default async function SlashCommands(client: Client)
             const guild = client.guilds.cache.find(e => e.id === interaction.guild_id);
             //@ts-ignore
             const channel = guild?.channels.cache.get(interaction.channel_id) as TextChannel
-            const author = guild?.members.cache.get(interaction.member.user.id);
+            const author = guild?.members.cache.get(interaction.member.user.id) as GuildMember;
 
             // If we found and command execute it.
             if (command) {
                 handler?.(
                     client,
                     interaction,
-                    //@ts-ignore
                     author,
                     channel,
                     args
