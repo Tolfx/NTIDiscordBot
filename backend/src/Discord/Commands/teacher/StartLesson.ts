@@ -105,10 +105,11 @@ export async function run_slash(
     interaction: Interaction,
     author: GuildMember,
     channel: TextChannel,
-    args: arg_slash)
+    args: arg_slash
+)
 {
-    // Check if user is a techer (is admin..);
     const sr = new reply(client, interaction);
+    // Check if user is a techer (is admin..);
     if(!isAdmin(author))
         return sr.reply(`You are not an administrator`);
   
