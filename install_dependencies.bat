@@ -7,6 +7,6 @@ IF "%arg1%"=="backend" (
 )
 
 IF "%arg1%"=="vue_frontend" (
-    cd ./backend
+    cd ./frontend
     npm install
 )
