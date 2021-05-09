@@ -17,15 +17,18 @@ pipeline {
 
     stages {
 
+        
         stage("Build") {
 
             steps {
                 echo 'Checking nodejs stuff.'
-                sh 'npm --version'
-                sh 'node --version'
-                sh 'npm install'
-                sh 'npm i typescript -g'
-                sh 'tsc'
+                dir("./backend") {
+                    sh 'npm --version'
+                    sh 'node --version'
+                    sh 'npm install'
+                    sh 'npm i typescript -g'
+                    sh 'tsc'
+                }
             }
 
         }
@@ -34,7 +37,9 @@ pipeline {
 
             steps {
                 echo 'Starting server.'
-                sh 'node ./build/Server.js'
+                dir("./backend") {
+                    sh 'node ./build/Server.js'
+                }
             }
 
         }
@@ -47,6 +52,5 @@ pipeline {
             }
 
         }
-
     }
 }
