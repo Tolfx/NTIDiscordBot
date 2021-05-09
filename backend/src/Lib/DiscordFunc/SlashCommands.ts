@@ -17,6 +17,21 @@ const End_Lesson_Command = {
     "description": "Ends an active lesson",
 }
 
-const SlashCommandsArray = [End_Lesson_Command, Start_Lesson_Command]
+const Absence_Command =
+{
+    "name": "absence",
+    "description": "Shows absence of mentioned user",
+    "options": [
+      {
+        "type": 6,
+        "name": "user",
+        "description": "The user who you want to check absence on",
+        "default": false,
+        "required": true
+      }
+    ]
+}
+
+const SlashCommandsArray = [End_Lesson_Command, Start_Lesson_Command, Absence_Command]
 
 export default SlashCommandsArray;
