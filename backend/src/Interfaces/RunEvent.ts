@@ -7,7 +7,7 @@ export type arg_slash = ApplicationCommandInteractionDataOption[] | undefined;
 export type RunEvent = (
     client: Client,
     message: Message,
-    args: string[] | ApplicationCommandInteractionDataOption[] | undefined
+    args: string[]
 ) => void;
 
 export type RunEventSlash = (

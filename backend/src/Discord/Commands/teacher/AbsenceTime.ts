@@ -67,9 +67,8 @@ export async function run_slash(
     if(!isAdmin(author))
         return sr(`You are not an administrator`);
 
-    //@ts-ignore
-    const user = client.users.cache.get(((args?.find(e => e.name === "user"))?.value));
-
+    const user = client.users.cache.get(((args?.find(e => e.name === "user"))?.value as string));
+    
     if(!user)
         return sr(`Invalid user`);
 
