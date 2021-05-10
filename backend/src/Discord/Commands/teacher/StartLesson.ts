@@ -117,9 +117,11 @@ export async function run_slash(
     if(!currentVoiceChannel)
         return sr.reply(`Please join a \`voice channel\` to start a lesson`);
 
-    const time = (args?.find(e => e.name === "time"))?.value as string; 
+    const time = ((args?.find(e => e.name === "time"))?.value as string).split(" ");
 
-    const amountOfTime: number = ms(time);
+    const amountOfTime: number = time.map(e => {
+        return ms(e);
+    }).reduce((a,b) => a+b);
 
     const hasAnLessonActive = await Lesson.findOne({
         teacherId: author.id,
