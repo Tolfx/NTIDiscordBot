@@ -82,9 +82,9 @@ export async function run_slash(
         return sr(`You have no active lessons!`);
 
     const studentIndex = NowLesson.students.findIndex(e => e.memberId === user.id);
-
+    
     // No students lol?
-    if(studentIndex >= -1)
+    if(studentIndex === -1)
         return sr(`You got no student on this lesson`);
     const absence = NowLesson.students[studentIndex].absence;
     const student = NowLesson.students[studentIndex];
