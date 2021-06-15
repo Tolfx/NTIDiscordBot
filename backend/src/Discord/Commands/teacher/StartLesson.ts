@@ -46,8 +46,8 @@ export async function run(client: Client, message: Message, args: string[])
 
     // Gather all students
     const students = currentVoiceChannel.members.filter((member) => member.id !== message.author.id);
-    const student: Array<Student> = students.map(e => {
-        
+    const student: Array<Student> = students.map(e => 
+    {
         StudentSchema.findOne({ discordId: e.id }).then(s => {
             if(!s)
             {
