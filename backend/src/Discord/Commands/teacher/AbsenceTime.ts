@@ -66,7 +66,8 @@ export async function run_slash(
     // Check if user is a techer (is admin..);
     if(!isAdmin(author))
         return sr(`You are not an administrator`);
-
+    
+    //@ts-ignore
     const user = client.users.cache.get(((args?.find(e => e.name === "user"))?.value as string));
     
     if(!user)

@@ -117,6 +117,7 @@ export async function run_slash(
     if(!currentVoiceChannel)
         return sr.reply(`Please join a \`voice channel\` to start a lesson`);
 
+    //@ts-ignore
     const time = ((args?.find(e => e.name === "time"))?.value as string).split(" ");
 
     const amountOfTime: number = time.map(e => {
