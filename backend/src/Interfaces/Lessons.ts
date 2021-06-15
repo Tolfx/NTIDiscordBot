@@ -1,7 +1,7 @@
 import { Document} from "mongoose"
 import { PresenceStatus } from "discord.js"
 
-export interface Lesson extends Document
+export interface ILesson extends Document
 {
     teacherId: string;
     mainChannel: string;

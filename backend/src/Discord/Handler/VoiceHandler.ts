@@ -1,29 +1,29 @@
 import { VoiceState } from "discord.js";
-import { Lesson } from "../../Interfaces/Lessons";
+import { ILesson } from "../../Interfaces/Lessons";
 import EventListener from "../../Lib/EventListener";
 
 //@ts-ignore
-let lessons: [Lesson] = [];
+let lessons: [ILesson] = [];
 
-EventListener.on("newLesson", (data: Lesson) => {
+EventListener.on("newLesson", (data: ILesson) => {
     lessons.push(data)
 });
 
-EventListener.on("endedLesson", (data: Lesson) => {
+EventListener.on("endedLesson", (data: ILesson) => {
     const index = lessons.findIndex(lesson => lesson.id === data.id);
     if (index > -1) {
         lessons.splice(index, 1);
     }
 });
 
-EventListener.on("updateLesson", (data: Lesson) => {
+EventListener.on("updateLesson", (data: ILesson) => {
     const index = lessons.findIndex(lesson => lesson.id === data.id);
     if (index > -1) {
         lessons[index] = data;
     }
 });
 
-function getLesson(voiceChannelId: string, lesson: [Lesson])
+function getLesson(voiceChannelId: string, lesson: [ILesson])
 {
     const index = lesson.findIndex(e => e.mainChannel === voiceChannelId);
     if(index > -1)
@@ -34,7 +34,7 @@ function getLesson(voiceChannelId: string, lesson: [Lesson])
     return lesson[subIndex];
 }
 
-function getStudentIndex(lesson: Lesson, userId: string)
+function getStudentIndex(lesson: ILesson, userId: string)
 {
     const index = lesson.students.findIndex(e => e.memberId === userId);
     return index;
