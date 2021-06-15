@@ -1,7 +1,9 @@
 import { Message, Client } from "discord.js";
 import Lesson from "../../../Models/Lesson";
+import { ILesson } from "../../../Interfaces/Lessons"
 import { CreateRole } from "../../../Lib/DiscordFunc/ServerFunctions";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
+import AW from "../../../Lib/Async";
 
 export const name = "spread";
 
@@ -13,10 +15,19 @@ export async function run(client: Client, message: Message, args: string[])
     if(!isAdmin(message))
         return message.channel.send(`You are not an administrator`);
 
-    let NowLesson = await Lesson.findOne({
+    // @Tolfx
+    // Something new I'm testing :^)
+    const [NowLesson, ErrorLesson] = await AW<ILesson>(Lesson.findOne({
+            teacherId: message.author.id,
+            ended: false
+    }))
+    /*let NowLesson = await Lesson.findOne({
         teacherId: message.author.id,
         ended: false
-    });
+    });*/
+
+    if(ErrorLesson)
+        return message.reply(`An error accured`);
 
     // Tell author it already has no active lesson....
     if(!NowLesson)
