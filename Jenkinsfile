@@ -2,7 +2,7 @@ pipeline {
     
     agent {
         docker {
-            image 'python3.9-nodejs14-alpine'
+            image 'nikolaik/python-nodejs:python3.6-nodejs14-alpine'
         }
     }
 
