@@ -3,6 +3,8 @@ import { Discord_Guild_Id, Discord_Token } from "../../Config";
 import { DiscordInteractions, Interaction } from "slash-commands";
 import { GuildMember } from "discord.js";
 import SlashCommandsArray from "../../Lib/DiscordFunc/SlashCommands";
+import AW from "../../Lib/Async";
+import log from "../../Lib/Logger";
 
 export default async function SlashCommands(client: Client)
 {
@@ -14,9 +16,9 @@ export default async function SlashCommands(client: Client)
 
     for (let i = 0; i < SlashCommandsArray.length; i++)
     {
-        await interaction
-            .createApplicationCommand(SlashCommandsArray[i], Discord_Guild_Id)
-            .catch(console.error);
+        const [Data, C_Error] = await AW(interaction.createApplicationCommand(SlashCommandsArray[i], Discord_Guild_Id))
+        if(C_Error)
+            log.error(`${C_Error}`)
     }
 
     // Working on this later.
