@@ -11,6 +11,7 @@ pipeline {
 
             steps {
                 echo 'Coming soon..'
+                sh 'python CheckFormat.py backend'
             }
 
         }
