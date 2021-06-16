@@ -1,0 +1,18 @@
+pipeline {
+    
+    agent {
+        docker {
+            image 'nikolaik/python-nodejs:python3.6-nodejs14-alpine'
+        }
+    }
+
+    stages {
+        stage("Checking code") {
+
+            steps {
+                echo 'Coming soon..'
+            }
+
+        }
+    }
+}
