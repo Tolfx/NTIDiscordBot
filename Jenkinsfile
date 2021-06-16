@@ -27,7 +27,7 @@ pipeline {
                     sh 'npm install'
                     echo 'Installing Typescript'
                     sh 'npm i typescript -g'
-                    echp 'Compiling'
+                    echo 'Compiling'
                     sh 'tsc'
                 }
             }
