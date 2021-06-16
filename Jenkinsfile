@@ -44,6 +44,15 @@ pipeline {
 
         }
 
+        stage("Checking code") {
+
+            steps {
+                echo 'Checking code..'
+                sh 'python CheckCode.py backend'
+            }
+
+        }
+
         stage("Deploy") {
 
             steps {
