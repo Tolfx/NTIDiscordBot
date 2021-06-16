@@ -1,6 +1,6 @@
 import { TextChannel } from "discord.js";
 import { Client, Message, GuildMember } from "discord.js";
-import { ApplicationCommandInteractionDataOption, Interaction } from "slash-commands";
+import { ApplicationCommandInteractionDataOption, Interaction, NestedData } from "slash-commands";
 
 export type arg_slash = ApplicationCommandInteractionDataOption[] | undefined;
 

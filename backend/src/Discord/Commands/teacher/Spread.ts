@@ -20,11 +20,7 @@ export async function run(client: Client, message: Message, args: string[])
     const [NowLesson, ErrorLesson] = await AW<ILesson>(Lesson.findOne({
             teacherId: message.author.id,
             ended: false
-    }))
-    /*let NowLesson = await Lesson.findOne({
-        teacherId: message.author.id,
-        ended: false
-    });*/
+    }));
 
     if(ErrorLesson)
         return message.reply(`An error accured`);
