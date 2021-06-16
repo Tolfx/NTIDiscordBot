@@ -1,6 +1,10 @@
 pipeline {
     
-    agent none
+    agent {
+        docker {
+            image 'python3.9-nodejs14-alpine'
+        }
+    }
 
     environment {
         DISCORD_TOKEN=credentials('DISCORD_TOKEN')
@@ -14,12 +18,6 @@ pipeline {
     stages {
 
         stage("Build") {
-
-            agent {
-                docker {
-                    image 'node:14-alpine'
-                }
-            }
 
             steps {
                 echo 'Checking apps.'
@@ -38,20 +36,9 @@ pipeline {
 
         stage("Testing") {
 
-            agent {
-                docker {
-                    image 'node:14-alpine'
-                }
-            }
-
             steps {
+                echo 'Starting server.'
                 dir("./backend") {
-                    sh 'npm --version'
-                    sh 'node --version'
-                    sh 'npm install'
-                    sh 'npm i typescript -g'
-                    sh 'tsc'
-                    echo 'Starting server.'
                     sh 'node ./build/Server.js'
                 }
             }
@@ -60,15 +47,9 @@ pipeline {
 
         stage("Checking code") {
 
-            agent {
-                docker {
-                    image 'python:3.9.5-alpine' 
-                }
-            }
-
             steps {
                 echo 'Checking code..'
-                sh 'py CheckCode.py backend'
+                sh 'python CheckCode.py backend'
             }
 
         }
