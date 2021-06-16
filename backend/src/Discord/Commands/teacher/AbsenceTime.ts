@@ -3,7 +3,7 @@ import Lesson from "../../../Models/Lesson";
 import prettyMilliseconds from "pretty-ms";
 import dateFormat from "date-and-time";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
-import { Interaction } from "slash-commands";
+import { Interaction, NestedData } from "slash-commands";
 import { arg_slash } from "../../../Interfaces/RunEvent";
 import reply from "../../../Lib/DiscordFunc/SlashReply";
 
@@ -67,8 +67,13 @@ export async function run_slash(
     if(!isAdmin(author))
         return sr(`You are not an administrator`);
     
-    //@ts-ignore
-    const user = client.users.cache.get(((args?.find(e => e.name === "user"))?.value as string));
+    // Weird shit man
+    const user = client.users.cache.get(
+        (
+            ((args?.find(e => e.name === "user")) as NestedData)
+                ?.value as string
+        )
+    );
     
     if(!user)
         return sr(`Invalid user`);

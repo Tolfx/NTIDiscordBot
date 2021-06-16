@@ -7,7 +7,7 @@ import EventListener from "../../../Lib/EventListener";
 import StudentSchema from "../../../Models/Student";
 import log from "../../../Lib/Logger";
 import { arg_slash } from "../../../Interfaces/RunEvent";
-import { Interaction } from "slash-commands";
+import { Interaction, NestedData } from "slash-commands";
 import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 import reply from "../../../Lib/DiscordFunc/SlashReply";
 
@@ -117,8 +117,7 @@ export async function run_slash(
     if(!currentVoiceChannel)
         return sr.reply(`Please join a \`voice channel\` to start a lesson`);
 
-    //@ts-ignore
-    const time = ((args?.find(e => e.name === "time"))?.value as string).split(" ");
+    const time = (((args?.find(e => e.name === "time")) as NestedData)?.value as string).split(" ");
 
     const amountOfTime: number = time.map(e => {
         return ms(e);

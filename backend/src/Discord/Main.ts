@@ -8,6 +8,7 @@ import { Guild } from "discord.js";
 import VoiceHandler from "./Handler/VoiceHandler";
 import reCache from "./Handler/Caching";
 import SlashCommands from "./Handler/SlashCommands";
+import { ApplicationCommandInteractionDataOption, ApplicationCommandOptionValue } from "slash-commands/dist/src/structures";
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -16,7 +17,16 @@ declare module 'discord.js'
       commands: Collection<string, RunEvent>;
       category: string[];
     }
+}
 
+declare module 'slash-commands'
+{
+    export type NestedData = {
+        value: ApplicationCommandOptionValue;
+        name: string;
+        options: ApplicationCommandInteractionDataOption[];
+    }
+    //export type ApplicationCommandInteractionDataOption = NestedData
 }
 
 /*
