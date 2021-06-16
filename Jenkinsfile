@@ -17,16 +17,17 @@ pipeline {
 
     stages {
 
-        
         stage("Build") {
 
             steps {
-                echo 'Checking nodejs stuff.'
+                echo 'Checking apps.'
                 dir("./backend") {
                     sh 'npm --version'
                     sh 'node --version'
                     sh 'npm install'
+                    echo 'Installing Typescript'
                     sh 'npm i typescript -g'
+                    echp 'Compiling'
                     sh 'tsc'
                 }
             }
@@ -48,7 +49,7 @@ pipeline {
 
             steps {
                 echo 'Checking code..'
-                sh 'python CheckCode.py backend'
+                sh 'py CheckCode.py backend'
             }
 
         }
