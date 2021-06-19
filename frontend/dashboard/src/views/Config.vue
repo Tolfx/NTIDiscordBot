@@ -1,9 +1,8 @@
 <template>
     <div>
-        <button>Create new config</button>
-
-        <!-- Loop for each config created -->
+        <a href="/dashboard/config/new">Create new config</a>
         <div>
+        <!-- Loop for each config created -->
 
             <div>
                 <h4>IT19A</h4>
