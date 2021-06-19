@@ -16,6 +16,18 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: "/dashboard/config",
+    name: "Config",
+    component: () => import("../views/Config.vue"),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/dashboard/config/new",
+    name: "ConfigNew",
+    component: () => import("../views/ConfigNew.vue"),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/secure',
     name: 'Secure',
     component: () => import('../views/Secure.vue'),
