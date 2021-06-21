@@ -1,14 +1,14 @@
 import { Document, Model, model, Schema } from "mongoose"
 import IConfigLesson from "../Interfaces/ConfigLessons";
 
-const ConfigLessonSchema = new Schema
+const ConfigLessonSchema = new Schema<IConfigLesson>
 (
     {
 
         name: {
             type: String,
             required: true,
-            unique: true
+            // unique: true
         },
 
         teacherId: {
@@ -16,10 +16,10 @@ const ConfigLessonSchema = new Schema
             required: true,
         },
 
-        presence: {
-            type: Object,
-            required: true,
-        },
+        // presence: {
+        //     type: Object,
+        //     required: true,
+        // },
 
         students: {
             type: Array,
@@ -27,28 +27,28 @@ const ConfigLessonSchema = new Schema
         },
 
         length: {
-            type: Number,
+            type: String,
             required: true
         },
 
         min_camera: {
-            type: Number,
-            required: true,
+            type: String,
+            default: "5m",
         },
 
         min_streaming: {
-            type: Number,
-            required: true,
+            type: String,
+            default: "5m",
         },
 
         min_messages: {
-            type: Number,
-            required: true,
+            type: String,
+            default: "5",
         },
 
         min_mobile_time: {
-            type: Number,
-            required: false,
+            type: String,
+            default: "5m",
         },
 
         hall: {
