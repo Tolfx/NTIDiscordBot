@@ -10,6 +10,7 @@ import UserRouter from "./Routers/User";
 import API_Responses from "./Functions/ResJson";
 import ValidationRouter from "./Routers/Validation";
 import LessonRouter from "./Routers/Lessons";
+import ConfigRouter from "./Routers/Config";
 
 declare module 'express-session' {
     export interface SessionData {
@@ -66,6 +67,7 @@ export default class ExpressServer
         new UserRouter(this.server, this.Oauth, this.client);
         new ValidationRouter(this.server, this.Oauth, this.client);
         new LessonRouter(this.server, this.Oauth, this.client);
+        new ConfigRouter(this.server, this.Oauth, this.client);
     
         this.server.listen(PORT, () => log.info(`Server listing on port: ${PORT}`, log.trace()));
     }
