@@ -63,9 +63,9 @@ DiscordD <---> SSoftID --> CSV Data ---> Fill form
 
 ## Images from the chat
 Content: https://discord.com/channels/@me/833623467483070526/834878029142163476
-https://discord.com/channels/@me/833623467483070526/834883080166572063
-https://discord.com/channels/@me/833623467483070526/834896386398748752
-https://discord.com/channels/@me/833623467483070526/834769643552899113
+![](https://cdn.discordapp.com/attachments/833623467483070526/834883079976779797/unknown.png)
+https://pastebin.com/jEithu6S
+https://chrome.google.com/webstore/detail/autofill/nlmmgnhgdeffjkdckmikfpnddkbbfkkk
 
 ## WHBD
 - We drew a flowchart of lession logic
