@@ -12,8 +12,8 @@ export default function CommandHandler(client: any): void
 
     // Dir for commands.
     let commandDir = process.cwd()+"/build/Discord/Commands";
-    if(!commandDir.includes("backend"))
-        commandDir = process.cwd()+"/backend/build/Discord/Commands";
+    // if(!commandDir.includes("backend"))
+    //     commandDir = process.cwd()+"/backend/build/Discord/Commands";
     client.category = readdirSync(commandDir);
     //
     readdirSync(commandDir).forEach((dir) => {
