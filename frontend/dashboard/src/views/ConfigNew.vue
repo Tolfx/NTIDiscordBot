@@ -5,7 +5,7 @@
             <input type="text" name="name" placeholder="Name for lesson">
 
             <label for="">Class *</label>
-            <select name="class">
+            <select name="c_class">
                 <!-- Loop for each class -->
                 <option selected>Choose...</option>
                 <option value="1">IT19A</option>
