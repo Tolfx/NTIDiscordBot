@@ -71,7 +71,7 @@ export default class ConfigRouter {
             if(!newLesson)
                 return API_Responses.API_Error("Something went wrong.. try again later")(res);
 
-            return API_Responses.API_Success(`${c_class} was succesfully created.`);
+            return API_Responses.API_Success(`${c_class} was succesfully created.`)(res);
         })
 
     }
