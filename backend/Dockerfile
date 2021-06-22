@@ -15,6 +15,8 @@ COPY . /usr/src/app
 
 RUN tsc
 
+RUN echo ls
+
 COPY ./build /usr/src/app
 
 EXPOSE 8080
