@@ -73,6 +73,32 @@ export default class ConfigRouter {
             return API_Responses.API_Success(`${c_class} was succesfully created.`)(res);
         });
 
+        this.router.get("/get/configs", async (req, res) => {
+            const [User, U_Error] = await AW((this.oauth.resolveInformation(req)));
+
+            if(!User)
+                return;
+
+            if(U_Error)
+                return API_Responses.API_Error("Something went wrong while fetching user information")(res);
+
+
+            const [Config, C_Error] = await AW<IConfigLesson>(ConfigLesson.find({ 
+                teacherId: User.id,
+                // _id: ConfigId 
+            }));
+
+            if(C_Error)
+                return API_Responses.API_Error("Something went wrong while fetching config information")(res);
+
+
+            if(!Config)
+                return API_Responses.API_Error(`Unable to find any configs to this teacher: ${User.username}`)(res);
+
+            return API_Responses.API_Success(Config)(res);
+            
+        });
+
         this.router.get("/get/config/:configId", async (req, res) => {
             const [User, U_Error] = await AW((this.oauth.resolveInformation(req)));
             const ConfigId = req.params.configId;
