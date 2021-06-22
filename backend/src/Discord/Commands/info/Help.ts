@@ -1,4 +1,4 @@
-import { stripIndents } from "common-tags";
+import { stripIndent, stripIndents } from "common-tags";
 import { Message, MessageEmbed, Client } from "discord.js";
 
 export const name = "help";
@@ -7,9 +7,19 @@ export const cat = "info";
 
 export function run(client: Client, message: Message, args: string[])
 {
+    const embed = new MessageEmbed()
+    .setColor("")
+    .setThumbnail(client.user?.avatarURL({ size: 512 }) ?? "")
+    .setTimestamp()
+    .setAuthor(client.user?.username, client.user?.avatarURL({ size: 512 }) ?? "")
+    .setDescription(stripIndent`
+    **Authors**
+    [Tolfx](https://github.com/Tolfx)
+    Arvid
+    Herman
+    `)
     if(args[0])
     {
-        const embed = new MessageEmbed()
         const command = args[0];
         const cmd = client.commands.get(command.toLowerCase());
         let info = "";
@@ -36,8 +46,6 @@ export function run(client: Client, message: Message, args: string[])
                 stripIndents`**${cat[0].toUpperCase() + cat.slice(1)} commands**: \n${commands(cat)}`)
                 .reduce((string, category) => string + "\n" + "\n" + category)
     
-        const Embed = new MessageEmbed();
-    
-        message.channel.send(Embed.setDescription(category));
+        message.channel.send(embed.setDescription(category));
     }
 }
