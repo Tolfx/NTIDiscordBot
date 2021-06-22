@@ -1,6 +1,6 @@
 {
-  "name": "NTIDiscordBot",
-  "version": "1.0.0",
+  "name": "ntidiscordbot",
+  "version": "1.5.2",
   "description": "",
   "main": "Server.ts",
   "scripts": {
