@@ -15,9 +15,6 @@ COPY . ./
 
 RUN tsc -b
 
-RUN if [[ -d "./build" ]]; then echo "Dir is here"; fi;
-RUN if [[ -f "./build/Server.js" ]]; then echo "File is here"; fi;
-
 ENV DISCORD_TOKEN ""
 ENV SECRETAUTH ""
 ENV DISCORD_CLIENT_ID ""

@@ -8,7 +8,28 @@ on:
 
 jobs:
 
+  # Test our code..
+
+  test:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: "Build code"
+      working-directory: ./backend
+      run: tsc -b
+
+    - name: "Test code"
+      working-directory: ./backend
+      env:
+        GITHUB_ACTION: true
+      run: node Server.js
+
   build:
+
+    needs: test
 
     runs-on: ubuntu-latest
 
