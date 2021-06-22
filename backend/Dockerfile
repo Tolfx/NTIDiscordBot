@@ -5,20 +5,18 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 RUN npm install -g @types/node \
     && npm install -g typescript
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY . /usr/src/app
+COPY . .
 
 RUN tsc -p .
 
-RUN echo ls
-
-COPY ./build /usr/src/app
+WORKDIR ./build
 
 EXPOSE 8080
 
-CMD [ "node", "./build/Server.js" ]
+CMD [ "node", "Server.js" ]
