@@ -11,12 +11,12 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY . ./
 
 RUN tsc -b
 
-WORKDIR ./build
+COPY ./build ./
 
 EXPOSE 8080
 
-CMD [ "node", "aerver.js" ]
+CMD [ "node", "./build/Server.js" ]
