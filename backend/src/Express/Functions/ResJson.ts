@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-function API_Error(response: Object, status?: number, error_code?: number)
+function API_Error(response: Object, status?: number)
 {
     return (res: Response) =>
     {
@@ -9,7 +9,7 @@ function API_Error(response: Object, status?: number, error_code?: number)
             type: "error",
             message: response
         };
-        return res.status(status ? status : 400).json(result);
+        return res.status(status ?? 400).json(result);
     }
 }
 
@@ -22,7 +22,7 @@ function API_Success(response: Object, status?: number)
             type: "success",
             message: response
         };
-        return res.status(status ? status : 200).json(result);
+        return res.status(status ?? 200).json(result);
     }
 }
 
