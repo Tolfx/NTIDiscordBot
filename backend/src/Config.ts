@@ -1,5 +1,5 @@
 export const ExpressPort = 8080;
-export const Discord_Prefix = "!";
+export const Discord_Prefix = process.env.PREFIX ?? "!";
 export const Discord_Guild_Id = "835552025839665173";
 export const Admin_Role_Id = "835552201346121738";
 export const Discord_Token = process.env.DISCORD_TOKEN ?? "";
