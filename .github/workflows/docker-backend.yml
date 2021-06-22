@@ -1,0 +1,28 @@
+name: Docker Image - Backend
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        working-directory: ./backend
+        run: docker build . --file Dockerfile --tag tolfx/ntidiscordbot-backend:latest
+      - name: Docker push
+        working-directory: ./backend
+        run: docker push tolfx/ntidiscordbot-backend
