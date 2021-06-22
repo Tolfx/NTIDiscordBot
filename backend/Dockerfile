@@ -9,11 +9,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install \
+    && tsc
 
 COPY . /usr/src/app
-
-RUN tsc
 
 EXPOSE 8080
 
