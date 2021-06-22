@@ -12,24 +12,23 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: "Install"
+        working-directory: ./backend
+        run: npm install
 
-    - name: "Install"
-      working-directory: ./backend
-      run: npm install
+      - name: "Build code"
+        working-directory: ./backend
+        run: tsc -b
 
-    - name: "Build code"
-      working-directory: ./backend
-      run: tsc -b
-
-    - name: "Test code"
-      working-directory: ./backend
-      env:
-        GITHUB_ACTION: true
-      run: node Server.js
+      - name: "Test code"
+        working-directory: ./backend
+        env:
+          GITHUB_ACTION: true
+        run: node Server.js
 
   build:
 
