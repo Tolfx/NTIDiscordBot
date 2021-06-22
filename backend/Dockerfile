@@ -19,4 +19,4 @@ WORKDIR ./build
 
 EXPOSE 8080
 
-CMD [ "node", "Server.js" ]
+CMD [ "node", "aerver.js" ]
