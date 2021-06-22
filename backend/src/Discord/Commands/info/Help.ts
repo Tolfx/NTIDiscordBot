@@ -7,17 +7,18 @@ export const cat = "info";
 
 export function run(client: Client, message: Message, args: string[])
 {
-    const embed = new MessageEmbed()
-    .setColor("")
-    .setThumbnail(client.user?.avatarURL({ size: 512 }) ?? "")
-    .setTimestamp()
-    .setAuthor(client.user?.username, client.user?.avatarURL({ size: 512 }) ?? "")
-    .setDescription(stripIndent`
+    const Authors = stripIndent`
     **Authors**
     [Tolfx](https://github.com/Tolfx)
     Arvid
     Herman
-    `)
+    `
+
+    const embed = new MessageEmbed()
+    .setColor("#dd0890")
+    .setThumbnail(client.user?.avatarURL({ size: 512 }) ?? "")
+    .setTimestamp()
+    .setAuthor(client.user?.username, client.user?.avatarURL({ size: 512 }) ?? "");
     if(args[0])
     {
         const command = args[0];
@@ -45,7 +46,7 @@ export function run(client: Client, message: Message, args: string[])
         const category = client.category.map(cat => 
                 stripIndents`**${cat[0].toUpperCase() + cat.slice(1)} commands**: \n${commands(cat)}`)
                 .reduce((string, category) => string + "\n" + "\n" + category)
-    
-        message.channel.send(embed.setDescription(category));
+
+        message.channel.send(embed.setDescription(category + "\n\n" + Authors));
     }
 }
