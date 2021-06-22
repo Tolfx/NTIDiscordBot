@@ -1,13 +1,11 @@
 import express from "express";
-import session from "express-session";
 import cors from "cors";
 import methodOverride from "method-override";
-import { ExpressPort as PORT, SecretAuth } from "../Config";
+import { ExpressPort as PORT } from "../Config";
 import OAuth2 from "./Structures/Oauth2";
 import log from "../Lib/Logger";
 import { Client } from "discord.js";
 import UserRouter from "./Routers/User";
-import API_Responses from "./Functions/ResJson";
 import ValidationRouter from "./Routers/Validation";
 import LessonRouter from "./Routers/Lessons";
 import ConfigRouter from "./Routers/Config";
@@ -40,18 +38,6 @@ export default class ExpressServer
             origin: true,
             credentials: true
         }));
-    
-        /*this.server.use(session({
-            secret: SecretAuth,
-            resave: false,
-            saveUninitialized: false,
-            cookie: {
-                secure: "auto",
-                sameSite: false,
-                httpOnly: false,
-                maxAge: 6048e5
-            }
-        }));*/
     
         this.server.use(methodOverride('_method'));
         this.server.use(express.urlencoded({ extended: true }));
