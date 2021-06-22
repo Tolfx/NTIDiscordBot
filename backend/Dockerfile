@@ -15,7 +15,8 @@ COPY . ./
 
 RUN tsc -b
 
-RUN if [[ -d "./build" ]]; then echo "File is here"; fi;
+RUN if [[ -d "./build" ]]; then echo "Dir is here"; fi;
+RUN if [[ -f "./build/Server.js" ]]; then echo "File is here"; fi;
 
 EXPOSE 8080
 
