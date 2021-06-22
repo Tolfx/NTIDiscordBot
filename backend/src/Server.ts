@@ -13,7 +13,7 @@ mongoose.connect(MongoDB_URL, {
     autoIndex: false
 });
 
-if(process.env.JENKINS || process.env.GITHUB_ACTION)
+if(process.env.JENKINS || process.env.GITHUB_ACTION || process.env.DOCKER_TEST)
 {
     setTimeout(() => {
         log.info(`Exiting build :)`)
