@@ -9,8 +9,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install \
-    && tsc
+RUN npm install
+
+COPY . /usr/src/app
+
+RUN tsc
 
 COPY ./build /usr/src/app
 
