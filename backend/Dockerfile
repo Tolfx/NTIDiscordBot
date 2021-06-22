@@ -13,7 +13,7 @@ RUN npm install
 
 COPY . .
 
-RUN tsc -p .
+RUN tsc -b
 
 WORKDIR ./build
 
