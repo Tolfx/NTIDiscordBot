@@ -1,4 +1,4 @@
-import { Message, MessageEmbed, Client } from "discord.js";
+import { Message, Client } from "discord.js";
 
 export const name = "ping";
 

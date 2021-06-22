@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 
 function API_Error(response: Object, status?: number, error_code?: number)
 {

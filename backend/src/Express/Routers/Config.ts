@@ -2,8 +2,6 @@ import { Router, Application } from "express";
 import OAuth2 from "../Structures/Oauth2"
 import { Client } from "discord.js";
 import API_Responses from "../Functions/ResJson";
-import jwt from "jsonwebtoken";
-import { JWT_Access_Token } from "../../Config";
 import EnsureAuth from "../Middlewares/EnsureAuthentication";
 import AW from "../../Lib/Async";
 import Classes from "../../Models/Classes";
