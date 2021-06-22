@@ -1,4 +1,4 @@
-import { Document, Model, model, Schema } from "mongoose"
+import { Document, model, Schema } from "mongoose"
 
 interface StudenI extends Document {
     discordId: string;
