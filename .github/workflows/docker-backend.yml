@@ -28,7 +28,7 @@ jobs:
         working-directory: ./backend
         env:
           GITHUB_ACTION: true
-        run: node Server.js
+        run: node ./build/Server.js
 
   build:
 
