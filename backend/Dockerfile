@@ -15,7 +15,7 @@ COPY . ./
 
 RUN tsc -b
 
-COPY ./build ./
+RUN if [[ - "./build" ]]; then echo "File is here"; fi;
 
 EXPOSE 8080
 
