@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-export default interface ConfigLesson extends Document
+export default interface IConfigLesson extends Document
 {
     name: string,
     teacherId: string;
