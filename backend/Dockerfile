@@ -12,7 +12,7 @@ COPY package*.json ./
 RUN npm install \
     && tsc
 
-COPY . /usr/src/app
+COPY ./build /usr/src/app
 
 EXPOSE 8080
 
