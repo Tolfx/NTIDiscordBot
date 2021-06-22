@@ -10,8 +10,8 @@ export function run(client: Client, message: Message, args: string[])
     const Authors = stripIndent`
     **Authors**
     [Tolfx](https://github.com/Tolfx)
-    Arvid
-    Herman
+    [Arvid](https://github.com/ArvidAnderson)
+    [Herman](https://github.com/themangokid)
     `
 
     const embed = new MessageEmbed()
