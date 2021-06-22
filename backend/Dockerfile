@@ -13,7 +13,7 @@ RUN npm install
 
 COPY . /usr/src/app
 
-RUN tsc
+RUN tsc -p .
 
 RUN echo ls
 
