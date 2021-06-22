@@ -18,6 +18,14 @@ RUN tsc -b
 RUN if [[ -d "./build" ]]; then echo "Dir is here"; fi;
 RUN if [[ -f "./build/Server.js" ]]; then echo "File is here"; fi;
 
+ENV DISCORD_TOKEN ""
+ENV SECRETAUTH ""
+ENV DISCORD_CLIENT_ID ""
+ENV DISCORD_CLIENT_SECRET ""
+ENV MONGODB_URL ""
+ENV CALLBACK_URL ""
+ENV ACCESS_TOKEN_SECRET ""
+
 EXPOSE 8080
 
 CMD [ "node", "./build/Server.js" ]
