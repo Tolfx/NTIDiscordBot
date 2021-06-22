@@ -17,6 +17,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: "Install"
+      working-directory: ./backend
+      run: npm install
+
     - name: "Build code"
       working-directory: ./backend
       run: tsc -b
