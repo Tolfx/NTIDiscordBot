@@ -4,7 +4,7 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 
 RUN apt-get upgrade -y && apt-get update -y
 
-RUN apt-get install curl
+RUN apt-get install curl -y
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
