@@ -1,6 +1,8 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
 LABEL author="Tolfix" maintainer="support@tolfix.com"
+
+RUN apt update -y && apt upgrade -y
 
 RUN apt-get upgrade -y && apt-get update -y
 
@@ -8,9 +10,10 @@ RUN apt-get install curl -y
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
-RUN apt -y install nodejs
+RUN apt install apache2 –y \
+    && apt install apache2-utils -y
 
-RUN apt-get install httpd –y
+RUN apt -y install nodejs
     
 RUN npm install -g @types/node \
     && npm install -g typescript
@@ -34,4 +37,4 @@ ENV VUE_APP_ACCESS_TOKEN_SECRET ""
 
 EXPOSE 80
 
-CMD [“/usr/sbin/httpd”, “-D”, “FOREGROUND”]
+CMD [“apache2ctl”, “-D”, “FOREGROUND”]
