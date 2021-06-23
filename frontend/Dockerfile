@@ -2,10 +2,10 @@ FROM node:14
 
 LABEL author="Tolfix" maintainer="support@tolfix.com"
 
-RUN apt update -y
+RUN apt-get upgrade -y && apt-get update -y
 
-RUN apt install apache2 –y  \
-    && apt install apache2-utils –y
+RUN apt-get install apache2 –y  \
+    && apt-get install apache2-utils –y
     
 RUN npm install -g @types/node \
     && npm install -g typescript
