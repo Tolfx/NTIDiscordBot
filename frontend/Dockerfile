@@ -1,25 +1,29 @@
 FROM ubuntu:latest
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Author
 LABEL author="Tolfix" maintainer="support@tolfix.com"
 
-RUN apt update -y && apt upgrade -y
-
+# Upgrade/Update apt[-get]
+RUN apt update -qq -y && apt -qq upgrade -y
 RUN apt-get upgrade -y && apt-get update -y
 
+# Install apache2
+RUN apt-get -y install software-properties-common \
+    && add-apt-repository ppa:ondrej/php \
+    && apt-get update \
+    && apt-get install -y apache2 \
+    && apt-get install -y php7.2 && apt-get install -y libapache2-mod-php7.2 php7.2-curl php7.2-json && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install curl
 RUN apt-get install curl -y
 
+# Get nodejs setup
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
-RUN aptitude install apache2 -y \
-    && aptitude install apache2-utils -y
-
-RUN apt install apache2 –y \
-    && apt install apache2-utils -y
-
+# Install node.js
 RUN apt -y install nodejs
-    
-RUN npm install -g @types/node \
-    && npm install -g typescript
 
 WORKDIR /usr/src
 
