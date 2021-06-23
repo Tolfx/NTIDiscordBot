@@ -2,9 +2,11 @@ name: Docker Image - Frontend
 
 on:
   push:
-    branches: [ master ]
+    paths: 
+      - '/frontend'
   pull_request:
-    branches: [ master ]
+    paths: 
+      - '/frontend'
 
 jobs:
 
@@ -22,9 +24,7 @@ jobs:
 
       - name: "Test code"
         working-directory: ./frontend/dashboard
-        env:
-          GITHUB_ACTION: true
-        run: npm lint
+        run: npm run lint
 
   build:
 
