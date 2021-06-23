@@ -4,7 +4,9 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 
 RUN apt-get upgrade -y && apt-get update -y
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+RUN apt-get install curl
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN apt -y install nodejs
 
