@@ -43,11 +43,11 @@ RUN npm run build
 RUN ls -la
 
 #COPY ./dashboard/dist/* /var/www/html/
-RUN cp -r ./dist /var/www/html/
+RUN cp -r ./dist/* /var/www/html/
 
 ENV VUE_APP_DISCORD_CLIENT_SECRET ""
 ENV VUE_APP_ACCESS_TOKEN_SECRET ""
 
 EXPOSE 80
 
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
