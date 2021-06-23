@@ -13,20 +13,18 @@
 </template>
 
 <script>
-import { webURL } from '../settings.js'
+import { webURL, ClientId, DebugMode } from '../settings.js'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 export default {
   name: 'Home',
   setup () {
     const store = useStore()
-
+  console.log(DebugMode)
     const signInWithDiscord = () => {
-      console.log('Initiating discord sign in');
-      const callbackURL = `${webURL}oauth2`,
-      clientID = process.env.VUE_APP_DISCORD_CLIENT_ID;
+      const callbackURL = `${webURL}oauth2`;
       window.location.href = 
-      `https://discord.com/oauth2/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(callbackURL)}&response_type=code&scope=${encodeURIComponent("identify guilds")}`;
+      `https://discord.com/oauth2/authorize?client_id=${ClientId}&redirect_uri=${encodeURIComponent(callbackURL)}&response_type=code&scope=${encodeURIComponent("identify guilds")}`;
     }
 
     return {

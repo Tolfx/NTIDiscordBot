@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { webURL } from '../settings.js'
+import { webURL, ClientId } from '../settings.js'
 import { useRouter } from 'vue-router';
 //import { useStore } from 'vuex'
 const jwt = require('jsonwebtoken')
@@ -34,7 +34,7 @@ export default {
             },
             //@ts-ignore
             body: new URLSearchParams({
-                "client_id": process.env.VUE_APP_DISCORD_CLIENT_ID,
+                "client_id": ClientId,
                 "client_secret": process.env.VUE_APP_DISCORD_CLIENT_SECRET,
                 "grant_type": "authorization_code",
                 "code": getParameterByName("code"),
