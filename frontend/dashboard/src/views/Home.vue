@@ -6,7 +6,7 @@
       <h1>{{user}}</h1>
       <button @click="signInWithDiscord()" class="bg-discord hover:bg-gray-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
         <img class="h-10" src = "../assets/logos/Discord-Logo-White.svg" alt="Logo"/>
-        <span>Sign in with Discord</span>
+        <span>Sign in with Discord here!!!</span>
       </button>
     </div>
   </div>
