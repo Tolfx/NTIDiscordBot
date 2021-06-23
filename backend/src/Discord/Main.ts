@@ -66,14 +66,14 @@ export default function StartDiscordBot()
 
     // When our client is ready say it!
     client.once("ready", () => {
-        log.info(`Bot is ready and online!`, log.trace());
+        log.info(`Bot is ready and online! Logged in as: ${client.user?.username}`, log.trace());
         client.user?.setPresence({
             status: "dnd",
             activity: {
                 name: `${prefix}help`,
                 type: "LISTENING",
             }
-        })
+        });
     });
 
 
