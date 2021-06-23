@@ -17,7 +17,10 @@ RUN apt-get -y install software-properties-common \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y apache2 \
-    && apt-get install -y php7.2 && apt-get install -y libapache2-mod-php7.2 php7.2-curl php7.2-json && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y php7.2 \
+    && apt-get install -y \
+    libapache2-mod-php7.2 \
+    php7.2-curl php7.2-json
 
 # Get nodejs setup
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
@@ -31,7 +34,7 @@ COPY . ./
 
 WORKDIR ./dashboard
 
-COPY package*.json ./
+COPY ./dashboard/package.json ./
 
 RUN npm install
 
