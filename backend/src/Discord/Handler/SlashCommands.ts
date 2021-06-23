@@ -1,5 +1,5 @@
 import { Client, TextChannel } from "discord.js";
-import { Discord_Guild_Id, Discord_Token } from "../../Config";
+import { Discord_Guild_Id, Discord_Id, Discord_Public_Key, Discord_Token } from "../../Config";
 import { DiscordInteractions, Interaction } from "slash-commands";
 import { GuildMember } from "discord.js";
 import SlashCommandsArray from "../../Lib/DiscordFunc/SlashCommands";
@@ -9,9 +9,9 @@ import log from "../../Lib/Logger";
 export default async function SlashCommands(client: Client)
 {
     const interaction = new DiscordInteractions({
-        applicationId: "835552682030792725",
+        applicationId: Discord_Id,
         authToken: Discord_Token,
-        publicKey: "4371ee2c0822bc337ea24ca76a72014a27ad1343c31d3bb0a5e1a5cf38f340ef",
+        publicKey: Discord_Public_Key,
     });
 
     for (let i = 0; i < SlashCommandsArray.length; i++)
