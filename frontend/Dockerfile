@@ -40,7 +40,9 @@ RUN npm install
 
 RUN npm run build
 
-COPY dashboard/dist/* /var/www/html/
+RUN ls -la
+
+COPY ./dashboard/dist/* /var/www/html/
 
 ENV VUE_APP_DISCORD_CLIENT_SECRET ""
 ENV VUE_APP_ACCESS_TOKEN_SECRET ""
