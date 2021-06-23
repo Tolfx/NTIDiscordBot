@@ -24,7 +24,7 @@ export default {
     const signInWithDiscord = () => {
       console.log('Initiating discord sign in');
       const callbackURL = `${webURL}oauth2`,
-      clientID = "835552682030792725";
+      clientID = process.env.VUE_APP_DISCORD_CLIENT_ID;
       window.location.href = 
       `https://discord.com/oauth2/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(callbackURL)}&response_type=code&scope=${encodeURIComponent("identify guilds")}`;
     }
