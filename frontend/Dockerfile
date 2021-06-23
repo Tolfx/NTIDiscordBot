@@ -4,8 +4,8 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 
 RUN apt update -y
 
-RUN apt install –y apache2 \
-    && apt install –y apache2-utils
+RUN apt install apache2 –y  \
+    && apt install apache2-utils –y
     
 RUN npm install -g @types/node \
     && npm install -g typescript
