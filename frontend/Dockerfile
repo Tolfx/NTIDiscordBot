@@ -14,7 +14,7 @@ RUN apt-get -y install software-properties-common \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y apache2 \
-    && apt-get install -y php7.2 && apt-get install -y libapache2-mod-php7.2 php7.2-curl php7.2-json && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y php7.2 && apt-get install -y libapache2-mod-php7.2 php7.2-curl php7.2-json && rm -rf /var/lib/apt/lists/*
 
 # Install curl
 RUN apt-get install curl -y
