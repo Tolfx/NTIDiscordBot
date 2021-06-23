@@ -46,6 +46,8 @@ export default class ExpressServer
             windowMs: 15 * 60 * 1000,
             max: 500
         });
+
+        this.server.use(limiter);
     
         this.server.use(methodOverride('_method'));
         this.server.use(express.urlencoded({ extended: true }));
