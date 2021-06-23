@@ -3,8 +3,6 @@ import StartDiscordBot from "./Discord/Main";
 import { MongoDB_URL } from "./Config";
 import mongoose from "mongoose";
 import log from "./Lib/Logger";
-import fs from "fs";
-import { stripIndent } from "common-tags";
 
 mongoose.connect(MongoDB_URL, {
     useNewUrlParser: true,
@@ -16,14 +14,14 @@ mongoose.connect(MongoDB_URL, {
 if(process.env.JENKINS || process.env.GITHUB_ACTION || process.env.DOCKER_TEST)
 {
     setTimeout(() => {
-        log.info(`Exiting build :)`)
+        log.info(`Exiting build.`)
         process.exit(0); // <-- Exit with code 0
     }, 30000) // <--- 30 sec
 }
 
 StartDiscordBot();
 
-fs.readFile(process.cwd()+"/.env", (err, data) => {
+/*fs.readFile(process.cwd()+"/.env", (err, data) => {
     if(!data)
     {
         log.error(`Missing .env file.. creating one.`);
@@ -39,7 +37,7 @@ fs.readFile(process.cwd()+"/.env", (err, data) => {
 
         fs.appendFile(process.cwd()+"/.env", content, (err) => {
             if (err) throw err;
-            log.info(`Succesfully created file.`);
+            log.info(`Succesfully created .env file`);
         });
     }
-});
+});*/

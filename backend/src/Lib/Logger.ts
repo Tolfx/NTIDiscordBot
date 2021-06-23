@@ -2,103 +2,73 @@
 // ~ Tolfx
 import colors from "colors";
 import dateFormat from "date-and-time";
+import { DebugMode } from "../Config";
 import DiscordWebhook from "./DiscordWebhook";
 
 const log = {
     trace: trace,
 
     debug: (body: any, trace = '') => {
-        if(process.env.DEBUG === 'true') {
-            let line, lines;
-            if(trace.length > 0)
-            {
-                line = trace;
-                lines = line.split("\n")
-            }
-
+        if(DebugMode) {
             let time = getTime();
-
-            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Yellow", "General");
 
             console.log(time + " | " + colors.cyan(`debug: ${body}`) 
             //@ts-ignore
-            + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
+            + " ", + trace.length !== '' ? trace : '');
         }
     },
 
     verbos: (body: any, trace = '') => {
-        let line, lines;
-        if(trace.length > 0)
-        {
-            line = trace;
-            lines = line.split("\n")
-        }
-
         let time = getTime();
 
-        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "General");
+        if(!DebugMode)
+            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "General");
 
         console.log(time + " | " + colors.magenta(`verbos: ${body}`)
         //@ts-ignore
-        + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
+        + " ", + trace.length !== '' ? trace : '');
     },
 
     error: (body: any, trace = '') => {
-        let line, lines;
-        if(trace.length > 0)
-        {
-            line = trace;
-            lines = line.split("\n")
-        }
-
         let time = getTime();
 
-        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Red", "Logs");
+        if(!DebugMode)
+            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Red", "Logs");
 
         console.log(time + " | " + colors.red(`error: ${body}`)
         //@ts-ignore
-        + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
+        + " ", + trace.length !== '' ? trace : '');
     },
 
     warning: (body: any, trace = '') => {
-        let line, lines;
-        if(trace.length > 0)
-        {
-            line = trace;
-            lines = line.split("\n")
-        }
-
         let time = getTime();
 
-        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Yellow", "Logs");
+        if(!DebugMode)
+            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Yellow", "Logs");
 
         console.log(time + " | " + colors.yellow(`warning: ${body}`)
         //@ts-ignore
-        + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
+        + " ", + trace.length !== '' ? trace : '');
     },
 
     info: (body: any, trace = '') => {
-        let line, lines;
-        if(trace.length > 0)
-        {
-            line = trace;
-            lines = line.split("\n")
-        }
-
         let time = getTime();
 
-        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "Logs");
+        if(!DebugMode)
+            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "Logs");
 
         console.log(time + " | " + colors.blue(`info: ${body}`)
         //@ts-ignore
-        + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
+        + " ", + trace.length !== '' ? trace : '');
     },
 }
 
 function trace()
 {
     var err = new Error();
-    return err.stack;
+    let lines = err.stack?.split("\n");
+    //@ts-ignore
+    return lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1)
 }
 
 function getTime() 

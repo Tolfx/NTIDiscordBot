@@ -10,3 +10,4 @@ export const SecretAuth = process.env.SECRETAUTH ?? ""
 export const NTIDiscordID = "835552025839665173";
 export const MongoDB_URL = process.env.MONGODB_URL ?? "";
 export const JWT_Access_Token = process.env.ACCESS_TOKEN_SECRET ?? "awgdwkdhwjkdahduihawd";
+export const DebugMode = process.env.DEBUG === "true" ? true : false;
