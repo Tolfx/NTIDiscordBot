@@ -2,6 +2,7 @@
 // ~ Tolfx
 import colors from "colors";
 import dateFormat from "date-and-time";
+import DiscordWebhook from "./DiscordWebhook";
 
 const log = {
     trace: trace,
@@ -16,6 +17,8 @@ const log = {
             }
 
             let time = getTime();
+
+            DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Yellow", "General");
 
             console.log(time + " | " + colors.cyan(`debug: ${body}`) 
             //@ts-ignore
@@ -33,6 +36,8 @@ const log = {
 
         let time = getTime();
 
+        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "General");
+
         console.log(time + " | " + colors.magenta(`verbos: ${body}`)
         //@ts-ignore
         + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
@@ -47,6 +52,8 @@ const log = {
         }
 
         let time = getTime();
+
+        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Red", "Logs");
 
         console.log(time + " | " + colors.red(`error: ${body}`)
         //@ts-ignore
@@ -63,6 +70,8 @@ const log = {
 
         let time = getTime();
 
+        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Yellow", "Logs");
+
         console.log(time + " | " + colors.yellow(`warning: ${body}`)
         //@ts-ignore
         + " ", + trace.length > 0 ? lines[2].substring(lines[2].indexOf("("), lines[2].lastIndexOf(")") + 1) : '');
@@ -77,6 +86,8 @@ const log = {
         }
 
         let time = getTime();
+
+        DiscordWebhook(trace === '' ? body : body + "\n\n" + trace, "Green", "Logs");
 
         console.log(time + " | " + colors.blue(`info: ${body}`)
         //@ts-ignore

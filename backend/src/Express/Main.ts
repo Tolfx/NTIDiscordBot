@@ -54,7 +54,7 @@ export default class ExpressServer
 
         this.server.use((req, res, next) => {
             res.setHeader('Content-Type', 'application/json');
-            res.setHeader('X-Powered-By', 'Tolfx Inc');
+            res.setHeader('X-Powered-By', 'Tolfix');
 
             next();
         });
