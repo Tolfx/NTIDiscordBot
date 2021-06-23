@@ -2,7 +2,9 @@ name: Docker Image - Frontend
 
 on:
   push:
-    paths: 
+    branch:
+      - 'master'
+    paths:
       - 'frontend/**'
 
 jobs:
