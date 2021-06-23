@@ -1,12 +1,10 @@
-FROM node:14-alpine
+FROM node:14
 
 LABEL author="Tolfix" maintainer="support@tolfix.com"
 
-RUN apt-get install –y apache2\
-    && apt-get install –y apache2-utils
-
-RUN apt-get clean 
-
+RUN apt install –y apache2\
+    && apt install –y apache2-utils
+    
 RUN npm install -g @types/node \
     && npm install -g typescript
 
