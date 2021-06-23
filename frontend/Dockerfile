@@ -12,15 +12,15 @@ RUN apt-get upgrade -y && apt-get update -y
 # Install curl
 RUN apt-get install curl -y
 
-# # Install apache2
-# RUN apt-get -y install software-properties-common \
-#     && add-apt-repository ppa:ondrej/php \
-#     && apt-get update \
-#     && apt-get install -y apache2 \
-#     && apt-get install -y php7.2 \
-#     && apt-get install -y \
-#     libapache2-mod-php7.2 \
-#     php7.2-curl php7.2-json
+# Install apache2
+RUN apt-get -y install software-properties-common \
+    && add-apt-repository ppa:ondrej/php \
+    && apt-get update \
+    && apt-get install -y apache2 \
+    && apt-get install -y php7.2 \
+    && apt-get install -y \
+    libapache2-mod-php7.2 \
+    php7.2-curl php7.2-json
 
 # Get nodejs setup
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
@@ -40,7 +40,7 @@ RUN npm install
 
 RUN npm run build
 
-ADD dashboard/dist /var/www/html/
+ADD ./dashboard/dist/** /var/www/html/
 
 ENV VUE_APP_DISCORD_CLIENT_SECRET ""
 ENV VUE_APP_ACCESS_TOKEN_SECRET ""
