@@ -4,7 +4,7 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 
 RUN apt update -y
 
-RUN apt install –y apache2\
+RUN apt install –y apache2 \
     && apt install –y apache2-utils
     
 RUN npm install -g @types/node \
