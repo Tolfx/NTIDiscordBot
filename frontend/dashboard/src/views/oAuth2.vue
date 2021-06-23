@@ -34,7 +34,7 @@ export default {
             },
             //@ts-ignore
             body: new URLSearchParams({
-                "client_id": "835552682030792725",
+                "client_id": "856873825283342350",
                 "client_secret": process.env.VUE_APP_DISCORD_CLIENT_SECRET,
                 "grant_type": "authorization_code",
                 "code": getParameterByName("code"),
