@@ -1,0 +1,48 @@
+name: Docker Image - Frontend
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  # Test our code..
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: "Install"
+        working-directory: ./frontend/dashboard
+        run: npm install
+
+      - name: "Test code"
+        working-directory: ./frontend/dashboard
+        env:
+          GITHUB_ACTION: true
+        run: npm lint
+
+  build:
+
+    needs: test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        working-directory: ./frontend
+        run: docker build . --file Dockerfile --tag tolfx/ntidiscordbot-frontend:latest
+      - name: Docker push
+        working-directory: ./frontend
+        run: docker push tolfx/ntidiscordbot-frontend
