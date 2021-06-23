@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import rateLimiter from "express-rate-limit";
 import methodOverride from "method-override";
 import { ExpressPort as PORT } from "../Config";
 import OAuth2 from "./Structures/Oauth2";
@@ -38,6 +39,13 @@ export default class ExpressServer
             origin: true,
             credentials: true
         }));
+
+        //Limiter, to reduce spam if it would happen.
+        const limiter = rateLimiter({
+            // 15 min
+            windowMs: 15 * 60 * 1000,
+            max: 500
+        });
     
         this.server.use(methodOverride('_method'));
         this.server.use(express.urlencoded({ extended: true }));
