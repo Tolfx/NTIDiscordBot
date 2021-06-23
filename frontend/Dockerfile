@@ -10,8 +10,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN apt -y install nodejs
 
-RUN apt-get install apache2 –y  \
-    && apt-get install apache2-utils –y
+RUN apt-get install httpd –y
     
 RUN npm install -g @types/node \
     && npm install -g typescript
@@ -35,4 +34,4 @@ ENV VUE_APP_ACCESS_TOKEN_SECRET ""
 
 EXPOSE 80
 
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+CMD [“/usr/sbin/httpd”, “-D”, “FOREGROUND”]
