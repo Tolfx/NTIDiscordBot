@@ -1,8 +1,12 @@
-FROM node:14
+FROM ubuntu:20.04
 
 LABEL author="Tolfix" maintainer="support@tolfix.com"
 
 RUN apt-get upgrade -y && apt-get update -y
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+
+RUN apt -y install nodejs
 
 RUN apt-get install apache2 –y  \
     && apt-get install apache2-utils –y
