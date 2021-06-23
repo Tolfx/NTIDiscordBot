@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-#  ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Author
 LABEL author="Tolfix" maintainer="support@tolfix.com"
@@ -9,8 +9,8 @@ LABEL author="Tolfix" maintainer="support@tolfix.com"
 RUN apt update -qq -y && apt -qq upgrade -y
 RUN apt-get upgrade -y && apt-get update -y
 
-# # Install curl
-# RUN apt-get install curl -y
+# Install curl
+RUN apt-get install curl -y
 
 # # Install apache2
 # RUN apt-get -y install software-properties-common \
