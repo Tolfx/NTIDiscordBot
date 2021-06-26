@@ -6,6 +6,7 @@ import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 import { Interaction, NestedData } from "slash-commands";
 import { arg_slash } from "../../../Interfaces/RunEvent";
 import reply from "../../../Lib/DiscordFunc/SlashReply";
+import { MessageActionRow, MessageButton } from "discord-buttons";
 
 export const name = "absence";
 
