@@ -52,7 +52,7 @@ export async function run(client: Client, message: Message, args: string[])
         return e.cameBackAt-e.leftAt
     }).reduce((a,c) => a+c);
 
-    return message.channel.send(`<@${student.memberId}> has been absence for \`${prettyMilliseconds(totalTime)}\`.`);
+    return message.channel.send(`<@${student.memberId}> has been \`absence\` for \`${prettyMilliseconds(totalTime)}\`.`);
 }
 
 export async function run_slash(
