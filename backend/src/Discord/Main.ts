@@ -4,11 +4,14 @@ import RunEvent from "../Interfaces/Command"
 import { Discord_Prefix, Discord_Token } from "../Config";
 import log from "../Lib/Logger";
 import ExpressServer from "../Express/Main";
+import DiscordButton from "discord-buttons"
 import { Guild } from "discord.js";
 import VoiceHandler from "./Handler/VoiceHandler";
 import reCache from "./Handler/Caching";
 import SlashCommands from "./Handler/SlashCommands";
 import { ApplicationCommandInteractionDataOption, ApplicationCommandOptionValue } from "slash-commands/dist/src/structures";
+import ButtonHandler from "./Handler/Button";
+
 const prefix = Discord_Prefix;
 
 declare module 'discord.js' 
@@ -55,6 +58,8 @@ export default function StartDiscordBot()
 {
 
     client.commands = new Collection();
+
+    DiscordButton(client);
 
     /**
      * @description Start express server with client.
@@ -115,6 +120,10 @@ export default function StartDiscordBot()
         {
             guild.leave();
         };
+    });
+
+    client.on('clickButton', async (button) => {
+        await ButtonHandler(button)
     });
 
     reCache();

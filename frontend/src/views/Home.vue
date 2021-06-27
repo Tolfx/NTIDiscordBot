@@ -13,14 +13,13 @@
 </template>
 
 <script>
-import { webURL, ClientId, DebugMode } from '../settings.js'
+import { webURL, ClientId } from '../settings.js'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 export default {
   name: 'Home',
   setup () {
     const store = useStore()
-  console.log(DebugMode)
     const signInWithDiscord = () => {
       const callbackURL = `${webURL}oauth2`;
       window.location.href = 

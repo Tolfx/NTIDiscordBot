@@ -15,7 +15,6 @@ export async function run(client: Client, message: Message, args: string[])
     if(!isAdmin(message))
         return message.channel.send(`You are not an administrator`);
 
-    // @Tolfx
     // Something new I'm testing :^)
     const [NowLesson, ErrorLesson] = await AW<ILesson>(Lesson.findOne({
             teacherId: message.author.id,

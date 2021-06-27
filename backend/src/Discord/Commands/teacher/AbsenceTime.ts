@@ -1,4 +1,4 @@
-import { Message, Client, GuildMember, TextChannel } from "discord.js";
+import { Message, Client, GuildMember, TextChannel, MessageAdditions } from "discord.js";
 import Lesson from "../../../Models/Lesson";
 import prettyMilliseconds from "pretty-ms";
 import dateFormat from "date-and-time";
@@ -6,6 +6,7 @@ import isAdmin from "../../../Lib/DiscordFunc/IsAdmin";
 import { Interaction, NestedData } from "slash-commands";
 import { arg_slash } from "../../../Interfaces/RunEvent";
 import reply from "../../../Lib/DiscordFunc/SlashReply";
+import CreateButton from "../../../Lib/DiscordFunc/CreateButton";
 
 export const name = "absence";
 
@@ -51,7 +52,7 @@ export async function run(client: Client, message: Message, args: string[])
         return e.cameBackAt-e.leftAt
     }).reduce((a,c) => a+c);
 
-    return message.channel.send(`<@${student.memberId}> has been absence for \`${prettyMilliseconds(totalTime)}\`.`);
+    return message.channel.send(`<@${student.memberId}> has been \`absence\` for \`${prettyMilliseconds(totalTime)}\`.`);
 }
 
 export async function run_slash(

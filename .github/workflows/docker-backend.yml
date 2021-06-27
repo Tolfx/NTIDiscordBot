@@ -2,10 +2,11 @@ name: Docker Image - Backend
 
 on:
   push:
-    branch:
-      - 'master'
     paths: 
       - 'backend/**'
+    branches:
+      - master
+
 
 jobs:
 
