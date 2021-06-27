@@ -8,6 +8,8 @@ const isAdmin = (content: Message | GuildMember) =>
         return (content.member.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
     if(content instanceof GuildMember)
         return (content.roles.cache.find(e => e.id === Admin_Role_Id)) ? true : false;
+
+    return false;
 }
 
 export default isAdmin;
