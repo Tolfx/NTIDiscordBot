@@ -5,7 +5,8 @@ interface DataButton
 {
     name: string;
     id: string;
-    style: keyof MessageButtonStyles;
+    style: "blurple" | "grey" | "green" | "red" | "url"
+    // style: keyof MessageButtonStyles;
     disabled?: Boolean;
     emoji?: string;
     url?: string;

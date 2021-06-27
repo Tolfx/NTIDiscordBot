@@ -5,6 +5,7 @@ import { GuildMember } from "discord.js";
 import SlashCommandsArray from "../../Lib/DiscordFunc/SlashCommands";
 import AW from "../../Lib/Async";
 import log from "../../Lib/Logger";
+import { MessageComponent } from "discord-buttons";
 
 export default async function SlashCommands(client: Client)
 {
@@ -24,6 +25,8 @@ export default async function SlashCommands(client: Client)
     // Working on this later.
     //@ts-ignore
     client.ws.on('INTERACTION_CREATE', async (interaction: Interaction) => {
+        if(interaction instanceof MessageComponent)
+            return;
         const command = interaction.data?.name.toLowerCase();
         const args = interaction.data?.options;
         if(command)
