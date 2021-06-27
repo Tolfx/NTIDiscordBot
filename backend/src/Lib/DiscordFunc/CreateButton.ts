@@ -1,5 +1,4 @@
 import { MessageActionRow, MessageButton, MessageButtonStyles } from "discord-buttons";
-import { Message, Client, GuildMember, TextChannel, MessageAdditions } from "discord.js";
 
 interface DataButton
 {
