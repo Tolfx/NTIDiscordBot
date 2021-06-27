@@ -22,6 +22,7 @@ export default function CreateButton(...data: DataButton[]): any
         let b = new MessageButton()
                 .setID(button.id)
                 .setLabel(button.name)
+                //@ts-ignore
                 .setStyle(button.style)
 
         if(button.disabled)
