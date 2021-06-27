@@ -3,7 +3,7 @@ import AW from "../../Lib/Async";
 import log from "../../Lib/Logger";
 
 
-export default async function ButtonHandler(button: Promise<MessageComponent>)
+export default async function ButtonHandler(button: MessageComponent)
 {
     const [Button, B_Error] = await AW(button);
 
