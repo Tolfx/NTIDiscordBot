@@ -13,5 +13,5 @@ export default async function ButtonHandler(button: MessageComponent)
     if(!Button)
         return;
 
-    console.log(Button)
+    // console.log(Button)
 }

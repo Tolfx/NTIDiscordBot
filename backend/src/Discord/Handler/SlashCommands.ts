@@ -24,7 +24,9 @@ export default async function SlashCommands(client: Client)
 
     // Working on this later.
     //@ts-ignore
-    client.ws.on('INTERACTION_CREATE', async (interaction: Interaction | MessageComponent) => {
+    client.ws.on('INTERACTION_CREATE', async (interaction: Interaction | MessageComponent) => 
+    {
+        // Not really sure why this ain't working.. :/
         if(interaction instanceof MessageComponent)
             return;
         const command = interaction.data?.name.toLowerCase();
